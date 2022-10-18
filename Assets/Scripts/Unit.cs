@@ -16,7 +16,7 @@ public class Unit
     public Bullet Bullet { get; set; }
     public Gun Gun { get; set; }
 
-    public bool IsDead { get; set; }
+    public bool IsDead { get; set; } = false;
 
     public Unit(string name, int maxHp, Bullet bullet, Gun gun)
     {

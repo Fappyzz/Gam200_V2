@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static GameData;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -44,14 +45,20 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject PrepCanvas;
     Vector3 prepCamPos = new Vector3(0, -15, -10);
+    [SerializeField] GameObject PrepGOs;
+    [SerializeField] GameObject PrepButtonGO;
+    [SerializeField] Button PrepButtonComp;
+    [SerializeField] TextMeshProUGUI PrepButtonTMP;
 
     [Space(10)]
 
-    [SerializeField] GameObject MapCanvas;
 
-    [Space(10)]
+
 
     [SerializeField] GameObject TutCanvas;
+    [SerializeField] Button Tut0ButtonComp;
+
+    [Space(10)]
 
     [SerializeField] GameObject TopBlackScreen;
     [SerializeField] GameObject BotBlackScreen;
@@ -61,13 +68,20 @@ public class GameManager : MonoBehaviour
     bool unclap = false;
 
     // Time taken for the transition.
-    float thingyTimer = 0.3f;
-    float thingyTimer2 = 0.3f;
+    float thingyTimer = 0.5f;
+    float thingyTimer2 = 0.5f;
 
     bool moveThingy = false;
     bool moveThingy2 = false;
 
+    float thingyTimer3 = 0.5f;
+    float thingyTimer4 = 0.5f;
+
+    bool moveThingy3 = false;
+    bool moveThingy4 = false;
+
     float velo = 0f;
+    float velo2 = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,11 +94,13 @@ public class GameManager : MonoBehaviour
         playerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 2)));
         playerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 2)));
 
-        enemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 2, 5), new Gun("test gun", 1)));
-        enemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 2, 6), new Gun("test gun", 2)));
-        enemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 2, 7), new Gun("test gun", 3)));
+        enemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 5), new Gun("test gun", 1)));
+        enemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 6), new Gun("test gun", 2)));
+        enemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 7), new Gun("test gun", 3)));
 
         PrepAllUnits();
+
+        Tut0ButtonComp.interactable = false;
     }
 
     // Update is called once per frame
@@ -101,34 +117,68 @@ public class GameManager : MonoBehaviour
             ResultCam.enabled = true;
         }*/
 
-        if (Input.GetKeyDown(KeyCode.G))
+        /*if (Input.GetKeyDown(KeyCode.G))
         {
             moveThingy = true;
-        }
-        if (moveThingy)
-        {
-            float newPosition = Mathf.SmoothDamp(MainCam.transform.position.x, -18, ref velo, thingyTimer);
-            MainCam.transform.position = new Vector3(newPosition, -15, -10);
-            thingyTimer -= Time.deltaTime;
-            if (thingyTimer < 0)
-            {
-                moveThingy = false;
-                thingyTimer = 0.3f;
-            }
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
             moveThingy2 = true;
         }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            moveThingy3 = true;
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            moveThingy4 = true;
+        }*/
+        if (moveThingy)
+        {
+            float newPosition = Mathf.SmoothDamp(PrepGOs.transform.localPosition.x, -1750, ref velo, thingyTimer);
+            PrepGOs.transform.localPosition = new Vector2(newPosition, 0);
+            thingyTimer -= Time.deltaTime;
+            if (thingyTimer < 0)
+            {
+                moveThingy = false;
+                thingyTimer = 0.5f;
+            }
+        }
         if (moveThingy2)
         {
-            float newPosition = Mathf.SmoothDamp(MainCam.transform.position.x, 0, ref velo, thingyTimer2);
-            MainCam.transform.position = new Vector3(newPosition, -15, -10);
+            float newPosition = Mathf.SmoothDamp(PrepGOs.transform.localPosition.x, 0, ref velo, thingyTimer2);
+            PrepGOs.transform.localPosition = new Vector2(newPosition, 0);
             thingyTimer2 -= Time.deltaTime;
             if (thingyTimer2 < 0)
             {
                 moveThingy2 = false;
-                thingyTimer2 = 0.3f;
+                thingyTimer2 = 0.5f;
+            }
+        }
+        
+        if (moveThingy3)
+        {
+            float newPosition = Mathf.SmoothDamp(PrepButtonGO.transform.localPosition.x, 1050, ref velo2, thingyTimer3);
+            PrepButtonGO.transform.localPosition = new Vector2(newPosition, PrepButtonGO.transform.localPosition.y);
+            thingyTimer3 -= Time.deltaTime;
+            if (thingyTimer3 < 0)
+            {
+                moveThingy3 = false;
+                thingyTimer3 = 0.5f;
+                PrepButtonComp.interactable = true;
+            }
+        }
+
+        if (moveThingy4)
+        {
+            float newPosition = Mathf.SmoothDamp(PrepButtonGO.transform.localPosition.x, 700, ref velo2, thingyTimer4);
+            PrepButtonGO.transform.localPosition = new Vector2(newPosition, PrepButtonGO.transform.localPosition.y);
+            thingyTimer4 -= Time.deltaTime;
+            if (thingyTimer4 < 0)
+            {
+                moveThingy4 = false;
+                thingyTimer4 = 0.5f;
+                PrepButtonComp.interactable = true;
             }
         }
 
@@ -169,6 +219,15 @@ public class GameManager : MonoBehaviour
                 clapTimer = 1.5f;
                 TopBlackScreen.SetActive(false);
                 BotBlackScreen.SetActive(false);
+                if (CurrentGameState == GameState.Combat)
+                {
+                    CanShootAllUnits(true);
+                    if (TutCount == 0)
+                    {
+                        CanShootAllUnits(false);
+                        Tut0ButtonComp.interactable = true;
+                    }
+                }
             }
         }
 
@@ -178,8 +237,8 @@ public class GameManager : MonoBehaviour
             victoryTimer -= Time.deltaTime;
             if (victoryTimer < 0)
             {
-                ChangeTo("Result");
                 combatEnd = true;
+                ChangeTo("Result");
                 victoryText.SetActive(false);
                 victoryTimer = 2f;
             }
@@ -223,9 +282,14 @@ public class GameManager : MonoBehaviour
             case "Combat":
                 CurrentGameState = GameState.Combat;
                 SetUpF = SetupCombatState;
+                CanShootAllUnits(false);
                 if (TutCount == 0)
                 {
                     TutSetUpF = SetupTut;
+                }
+                else
+                {
+                    SpawnEnemyUnits();
                 }
                 ClapScreen();
                 break;
@@ -237,16 +301,33 @@ public class GameManager : MonoBehaviour
                 break;
 
             case "Prep":
-                CurrentGameState = GameState.Result;
-                SetUpF = SetupPrepState;
-                if (TutCount == 4)
+                if (CurrentGameState == GameState.Prep)
                 {
-                    TutSetUpF = SetupTut;
+                    CurrentGameState = GameState.Map;
+                    PrepButtonTMP.text = "See Train";
+                    moveThingy = true;
+                    moveThingy3 = true;
+                    PrepButtonComp.interactable = false;
                 }
-                ClapScreen();
-                break;
-            case "Map":
-                moveThingy = true;
+                else if (CurrentGameState == GameState.Map)
+                {
+                    CurrentGameState = GameState.Prep;
+                    PrepButtonTMP.text = "See Map";
+                    moveThingy2 = true;
+                    moveThingy4 = true;
+                    PrepButtonComp.interactable = false;
+                }
+                else
+                {
+                    CurrentGameState = GameState.Prep;
+                    combatEnd = false;
+                    SetUpF = SetupPrepState;
+                    if (TutCount == 4)
+                    {
+                        TutSetUpF = SetupTut;
+                    }
+                    ClapScreen();
+                }
                 break;
         }
 
@@ -270,6 +351,9 @@ public class GameManager : MonoBehaviour
     {
         PrepCanvas.SetActive(true);
         MainCam.transform.position = prepCamPos;
+        PrepGOs.transform.localPosition = new Vector2(0, 0);
+        PrepButtonGO.transform.localPosition = new Vector2(700, 380);
+        PrepButtonTMP.text = "See Map";
     }
 
     void SetupTut()
@@ -283,7 +367,6 @@ public class GameManager : MonoBehaviour
         CombatCanvas.SetActive(false);
         ResultCanvas.SetActive(false);
         PrepCanvas.SetActive(false);
-        /*MapCanvas.SetActive(false);*/
         TutCanvas.SetActive(false);
     }
 
@@ -303,10 +386,22 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < playerTrainList.Count; i++)
         {
             playerTrainList[i].CanShoot = set;
+            playerTrainList[i].AutoAttackTimer = playerTrainList[i].thisGun.AutoAttTimer;
         }
         for (int i = 0; i < enemyTrainList.Count; i++)
         {
             enemyTrainList[i].CanShoot = set;
+            enemyTrainList[i].AutoAttackTimer = enemyTrainList[i].thisGun.AutoAttTimer;
         }
+    }
+    void SpawnEnemyUnits()
+    {
+        enemyUnits.Clear();
+
+        enemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 5), new Gun("test gun", 1)));
+        enemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 6), new Gun("test gun", 2)));
+        enemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 7), new Gun("test gun", 3)));
+
+        PrepAllUnits();
     }
 }

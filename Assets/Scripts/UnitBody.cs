@@ -15,11 +15,11 @@ public class UnitBody : MonoBehaviour
 
     public Unit thisUnit;
     Bullet thisBullet;
-    Gun thisGun;
+    public Gun thisGun;
 
     [SerializeField] CombatBulletBody cbd;
 
-    float AutoAttackTimer;
+    public float AutoAttackTimer;
 
     public bool CanShoot { get; set; } = false;
 
@@ -32,7 +32,7 @@ public class UnitBody : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        /*if (Input.GetKeyDown(KeyCode.Q))
         {
             UpdateUnitBody();
             CurrentGameState = GameState.Combat;
@@ -46,7 +46,7 @@ public class UnitBody : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log(thisUnit.Hp);
-        }
+        }*/
 
         if (AutoAttackTimer > 0 && CurrentGameState == GameState.Combat && CanShoot == true && !thisUnit.IsDead)
         {

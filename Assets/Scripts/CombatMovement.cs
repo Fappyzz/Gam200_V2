@@ -25,35 +25,38 @@ public class CombatMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (CurrentGameState == GameState.Combat)
         {
-            inputLeft = true;
-
-            if (canMoveLeft)
+            if (Input.GetKey(KeyCode.LeftArrow))
             {
-                movingLeft = true;
-                canMoveRight = false;
+                inputLeft = true;
+
+                if (canMoveLeft)
+                {
+                    movingLeft = true;
+                    canMoveRight = false;
+                }
+
+            }
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                inputRight = true;
+
+                if (canMoveRight)
+                {
+                    movingRight = true;
+                    canMoveLeft = false;
+                }
             }
 
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            inputRight = true;
-
-            if (canMoveRight)
+            if (Input.GetKeyUp(KeyCode.LeftArrow))
             {
-                movingRight = true;
-                canMoveLeft = false;
+                inputLeft = false;
             }
-        }
-
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            inputLeft = false;
-        }
-        if (Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            inputRight= false;
+            if (Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                inputRight = false;
+            }
         }
     }
 
@@ -72,7 +75,7 @@ public class CombatMovement : MonoBehaviour
         {
             if (TrainSpeed > 1)
             {
-                TrainSpeed -= TrainAcc;
+                TrainSpeed = 1;
             }
 
             rb.velocity = rb.velocity * 0.85f;
@@ -110,7 +113,7 @@ public class CombatMovement : MonoBehaviour
         {
             if (TrainSpeed > 1)
             {
-                TrainSpeed -= TrainAcc;
+                TrainSpeed = 1;
             }
 
             rb.velocity = rb.velocity * 0.97f;
