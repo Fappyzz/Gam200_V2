@@ -1,0 +1,184 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using static GameData;
+
+public class AIMovement : MonoBehaviour
+{
+    public enum AIState { Idle, Chase, Evade }
+    AIState currentAIState = AIState.Idle;
+
+    [SerializeField] GameObject PlayerTrainGO;
+    Vector2 waypoint;
+    float AITimer = 0.5f;
+
+    [SerializeField] Rigidbody2D rb;
+
+    bool inputLeft = false;
+    bool inputRight = false;
+
+    bool movingLeft = false;
+    bool movingRight = false;
+
+    bool canMoveLeft = true;
+    bool canMoveRight = true;
+    // Start is called before the first frame update
+    void Start()
+    {
+        GetPlayerPos();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (CurrentGameState == GameState.Combat)
+        {
+            AITimer -= Time.deltaTime;
+            if (AITimer < 0)
+            {
+                DoAIThings();
+                Debug.Log("Called this");
+                //AITimer = 0.5f;
+                AITimer = Random.Range(0f,1f);
+            }
+        }
+        if (CurrentGameState == GameState.Combat && currentAIState == AIState.Chase)
+        {
+            if (this.transform.position.x < waypoint.x)
+            {
+                AIMoveRight();
+                Debug.Log("Called this2");
+            }
+            else if (this.transform.position.x > waypoint.x)
+            {
+                AIMoveLeft();
+                Debug.Log("Called this3");
+            }
+            
+
+            
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (transform.position.x < -6.5)
+        {
+            rb.velocity = rb.velocity * 0f;
+        }
+        if (transform.position.x > 6.5)
+        {
+            rb.velocity = rb.velocity * 0f;
+        }
+
+        if (movingLeft && inputRight || movingRight && inputLeft || inputLeft && inputRight)
+        {
+            if (EnemyTrainSpeed > 1)
+            {
+                EnemyTrainSpeed = 1;
+            }
+
+            rb.velocity = rb.velocity * 0.85f;
+
+            if (rb.velocity.x < 0.05f && rb.velocity.x > -0.05f)
+            {
+                EnemyTrainSpeed = 1;
+
+                movingLeft = false;
+                movingRight = false;
+
+                canMoveLeft = true;
+                canMoveRight = true;
+            }
+        }
+        else if (movingLeft && inputLeft && transform.position.x > -7)
+        {
+            rb.velocity = new Vector2(-EnemyTrainSpeed, 0);
+
+            if (EnemyTrainSpeed < EnemyMaxTrainSpeed)
+            {
+                EnemyTrainSpeed += EnemyTrainAcc;
+            }
+        }
+        else if (movingRight && inputRight && transform.position.x < 7)
+        {
+            rb.velocity = new Vector2(EnemyTrainSpeed, 0);
+
+            if (EnemyTrainSpeed < EnemyMaxTrainSpeed)
+            {
+                EnemyTrainSpeed += EnemyTrainAcc;
+            }
+        }
+        else if (!inputLeft && !inputRight)
+        {
+            if (EnemyTrainSpeed > 1)
+            {
+                EnemyTrainSpeed = 1;
+            }
+
+            rb.velocity = rb.velocity * 0.97f;
+
+            if (rb.velocity.x < 0.05f && rb.velocity.x > -0.05f)
+            {
+                EnemyTrainSpeed = 1;
+
+                movingLeft = false;
+                movingRight = false;
+
+                canMoveLeft = true;
+                canMoveRight = true;
+            }
+        }
+    }
+
+    void GetPlayerPos()
+    {
+        waypoint = PlayerTrainGO.transform.position;
+    }
+
+    void DoAIThings()
+    {
+        if (currentAIState == AIState.Idle)
+        {
+            waypoint = PlayerTrainGO.transform.position;
+            currentAIState = AIState.Chase;
+        }
+        else if (currentAIState == AIState.Chase)
+        {
+            currentAIState = AIState.Idle;
+            AIStopMoveLeft();
+            AIStopMoveRight();
+        }
+    }
+
+    void AIMoveLeft()
+    {
+        inputLeft = true;
+
+        if (canMoveLeft)
+        {
+            movingLeft = true;
+            canMoveRight = false;
+        }
+    }
+
+    void AIMoveRight()
+    {
+        inputRight = true;
+
+        if (canMoveRight)
+        {
+            movingRight = true;
+            canMoveLeft = false;
+        }
+    }
+
+    void AIStopMoveLeft()
+    {
+        inputLeft = false;
+    }
+
+    void AIStopMoveRight()
+    {
+        inputRight = false;
+    }
+}

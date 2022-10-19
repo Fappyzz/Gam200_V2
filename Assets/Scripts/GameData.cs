@@ -15,6 +15,10 @@ public static class GameData
     public static int MaxTrainSpeed { get; set; } = 10;
     public static float TrainSpeed { get; set; } = 1;
     public static float TrainAcc { get; set; } = 0.2f;
+    
+    public static int EnemyMaxTrainSpeed { get; set; } = 10;
+    public static float EnemyTrainSpeed { get; set; } = 1;
+    public static float EnemyTrainAcc { get; set; } = 0.2f;
 
     public static List<Item> allItemsRef = new List<Item>();
 
