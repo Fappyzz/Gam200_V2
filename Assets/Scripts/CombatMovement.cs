@@ -62,6 +62,18 @@ public class CombatMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (CurrentGameState != GameState.Combat)
+        {
+            rb.velocity = rb.velocity * 0f;
+            inputLeft = false;
+            inputRight = false;
+
+            movingLeft = false;
+            movingRight = false;
+
+            canMoveLeft = true;
+            canMoveRight = true;
+        }
         if (transform.position.x < -6.5)
         {
             rb.velocity = rb.velocity * 0f;

@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject TopBlackScreen;
     [SerializeField] GameObject BotBlackScreen;
     float clapVelo = 0f;
-    float clapTimer = 1.5f;
+    float clapTimer = 0.5f;
     bool clap = false;
     bool unclap = false;
 
@@ -196,7 +196,7 @@ public class GameManager : MonoBehaviour
             {
                 clapVelo = 0f;
                 clap = false;
-                clapTimer = 1.5f;
+                clapTimer = 0.5f;
                 unclap = true;
 
                 TurnOffAllCanvas();
@@ -216,7 +216,7 @@ public class GameManager : MonoBehaviour
             {
                 clapVelo = 0f;
                 unclap = false;
-                clapTimer = 1.5f;
+                clapTimer = 0.5f;
                 TopBlackScreen.SetActive(false);
                 BotBlackScreen.SetActive(false);
                 if (CurrentGameState == GameState.Combat)
