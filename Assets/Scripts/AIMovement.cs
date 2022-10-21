@@ -39,7 +39,7 @@ public class AIMovement : MonoBehaviour
                 DoAIThings();
                 Debug.Log("Called this");
                 //AITimer = 0.5f;
-                AITimer = Random.Range(0f,1f);
+                AITimer = Random.Range(1f,2f);
             }
         }
         if (CurrentGameState == GameState.Combat && currentAIState == AIState.Chase)
