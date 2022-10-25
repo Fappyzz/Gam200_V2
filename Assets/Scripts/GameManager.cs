@@ -407,11 +407,11 @@ public class GameManager : MonoBehaviour
     {
         if (Random.Range(1, 3) == 1)
         {
-            PlayerItems.Add(new Item("Repair kit", Item.ModType.Heal, 2));
+            PlayerItems.Add(new Item("Repair kit", "Restore some health to your unit.", Item.ModType.Heal, 2));
         }
         else
         {
-            PlayerItems.Add(new Item("Armor", Item.ModType.Hp, 1));
+            PlayerItems.Add(new Item("Armor", "Restore health and increase max health to your unit.", Item.ModType.Hp, 1));
         }
     }
 

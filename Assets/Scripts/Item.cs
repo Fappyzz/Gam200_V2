@@ -19,39 +19,44 @@ public class Item
     public Bullet bullet;
     public Gun gun;
 
-    public Item(string name, ModType type,  int mod)
+    public Item(string name, string desc, ModType type,  int mod)
     {
         Name = name;
+        Desc = desc;
         Type = type;
         Mod = mod;
     }
 
-    public Item(string name, ModType type, int mod, ModType type2, int mod2)
+    public Item(string name, string desc, ModType type, int mod, ModType type2, int mod2)
     {
         Name = name;
+        Desc = desc;
         Type = type;
         Mod = mod;
         Type2 = type;
         Mod2 = mod2;
     }
 
-    public Item(string name, ModType type, Skill skill)
+    public Item(string name, string desc, ModType type, Skill skill)
     {
         Name = name;
+        Desc = desc;
         Type = type;
         this.skill = skill;
     }
 
-    public Item(string name, ModType type, Bullet bullet)
+    public Item(string name, string desc, ModType type, Bullet bullet)
     {
         Name = name;
+        Desc = desc;
         Type = type;
         this.bullet = bullet;
     }
 
-    public Item(string name, ModType type, Gun gun)
+    public Item(string name, string desc, ModType type, Gun gun)
     {
         Name = name;
+        Desc = desc;
         Type = type;
         this.gun = gun;
     }
