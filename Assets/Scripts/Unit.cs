@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static GameData;
+using static UnityEngine.GraphicsBuffer;
 
 public class Unit
 {
@@ -31,6 +32,24 @@ public class Unit
 
 public static class Unitf
 {
+    public static void DamageHeat(int dmg)
+    {
+        Heat -= dmg;
+
+        if (Heat <= 0)
+        {
+            Heat = 0;
+        }
+    }
+    public static void DamageHeat(Bullet bullet)
+    {
+        Heat -= bullet.Dmg;
+
+        if (Heat <= 0)
+        {
+            Heat = 0;
+        }
+    }
     public static void PrepFreshUnit(Unit target)
     {
         target.Hp = target.MaxHp;
@@ -38,7 +57,15 @@ public static class Unitf
 
     public static void DamageUnit(Unit target, int dmg)
     {
-        if (target.IsDead == false)
+        target.Hp -= dmg;
+
+        if (target.Hp <= 0)
+        {
+            target.Hp = 0;
+            target.IsDead = true;
+        }
+
+        /*if (target.IsDead == false)
         {
             target.Hp -= dmg;
 
@@ -51,11 +78,18 @@ public static class Unitf
         else
         {
             Heat -= dmg;
-        }
+        }*/
     }
     public static void DamageUnit(Unit target, Bullet bullet)
     {
-        if (target.IsDead == false)
+        target.Hp -= bullet.Dmg;
+
+        if (target.Hp <= 0)
+        {
+            target.Hp = 0;
+            target.IsDead = true;
+        }
+        /*if (target.IsDead == false)
         {
             target.Hp -= bullet.Dmg;
 
@@ -68,7 +102,7 @@ public static class Unitf
         else
         {
             Heat -= bullet.Dmg;
-        }
+        }*/
     }
 
     public static void HealUnit(Unit target, int heal)

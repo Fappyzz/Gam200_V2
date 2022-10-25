@@ -43,11 +43,18 @@ public class CombatBulletBody : MonoBehaviour
             if (isPlayer && collision.GetComponent<UnitBody>().thisUnitFaction == UnitBody.UnitFaction.Enemy)
             {
                 DamageUnit(collision.GetComponent<UnitBody>().thisUnit, bullet);
+
                 Destroy(this.gameObject);
             }
             else if (!isPlayer && collision.GetComponent<UnitBody>().thisUnitFaction == UnitBody.UnitFaction.Player)
             {
                 DamageUnit(collision.GetComponent<UnitBody>().thisUnit, bullet);
+
+                if (collision.GetComponent<UnitBody>().thisUnit.Hp <= 0)
+                {
+                    DamageHeat(bullet);
+                }
+
                 Destroy(this.gameObject);
             }       
         }
