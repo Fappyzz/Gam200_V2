@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
 
     [Space(10)]
 
+    [SerializeField] GameObject HeatBar;
+
+    [Space(10)]
+
     [SerializeField] public List<ItemBody> playerInventory = new List<ItemBody>();
 
     [Space(10)]
@@ -36,7 +40,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject playerTrainGO;
     Vector2 playerTrainStartingPos = new Vector2(0.5f, -3);
     [SerializeField] GameObject enemyTrainGO;
-    Vector2 enemyTrainStartingPos = new Vector2(0.5f, 3);
+    Vector2 enemyTrainStartingPos = new Vector2(0.5f, 2);
     bool combatEnd = false;
     [SerializeField] GameObject victoryText;
     float victoryTimer = 2f;
@@ -355,6 +359,10 @@ public class GameManager : MonoBehaviour
     void SetupCombatState()
     {
         CombatCanvas.SetActive(true);
+        if (HeatBar.activeSelf != true)
+        {
+            HeatBar.SetActive(true);
+        }
         MainCam.transform.position = combatCamPos;
         playerTrainGO.transform.position = playerTrainStartingPos;
         enemyTrainGO.transform.position = enemyTrainStartingPos;
@@ -365,7 +373,7 @@ public class GameManager : MonoBehaviour
         PrepCanvas.SetActive(true);
         MainCam.transform.position = prepCamPos;
         PrepGOs.transform.localPosition = new Vector2(0, 0);
-        PrepButtonGO.transform.localPosition = new Vector2(700, 380);
+        PrepButtonGO.transform.localPosition = new Vector2(700, 215);
         PrepButtonTMP.text = "See Map";
     }
 

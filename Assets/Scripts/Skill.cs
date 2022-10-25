@@ -22,7 +22,11 @@ public class Skill
         switch (skillRef)
         {
             case 1:
-                skillF = DamageEnemy;
+                skillF = Explosive;
+                break;
+
+            case 2:
+                skillF = MGFire;
                 break;
 
             default:
@@ -39,7 +43,11 @@ public class Skill
 
 public static class SkillActives
 {
-    public static void DamageEnemy()
+    public static void Explosive()
+    {
+        Debug.Log("Skill works");
+    }
+    public static void MGFire()
     {
         Debug.Log("Skill works");
     }
