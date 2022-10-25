@@ -90,9 +90,9 @@ public class CombatMovement : MonoBehaviour
                 TrainSpeed = 1;
             }
 
-            rb.velocity = rb.velocity * 0.85f;
+            rb.velocity = rb.velocity * 0.9f;
 
-            if (rb.velocity.x < 0.05f && rb.velocity.x > -0.05f)
+            if (rb.velocity.x < 0.5f && rb.velocity.x > -0.5f)
             {
                 TrainSpeed = 1;
 

@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using static GameData;
 using static Unitf;
+using static Itemf;
 
 public class UnitBody : MonoBehaviour
 {
@@ -65,17 +67,17 @@ public class UnitBody : MonoBehaviour
         {
             if (thisUnitRef == UnitRef.Unit0)
             {
-                thisUnit = playerUnits[0];
+                thisUnit = PlayerUnits[0];
                 
             }
             else if (thisUnitRef == UnitRef.Unit1)
             {
-                thisUnit = playerUnits[1];
+                thisUnit = PlayerUnits[1];
                 
             }
             else if (thisUnitRef == UnitRef.Unit2)
             {
-                thisUnit = playerUnits[2];
+                thisUnit = PlayerUnits[2];
                 
             }
         }
@@ -83,17 +85,17 @@ public class UnitBody : MonoBehaviour
         {
             if (thisUnitRef == UnitRef.Unit0)
             {
-                thisUnit = enemyUnits[0];
+                thisUnit = EnemyUnits[0];
 
             }
             else if (thisUnitRef == UnitRef.Unit1)
             {
-                thisUnit = enemyUnits[1];
+                thisUnit = EnemyUnits[1];
 
             }
             else if (thisUnitRef == UnitRef.Unit2)
             {
-                thisUnit = enemyUnits[2];
+                thisUnit = EnemyUnits[2];
 
             }
         }

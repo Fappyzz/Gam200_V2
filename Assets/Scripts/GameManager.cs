@@ -14,7 +14,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<UnitBody> enemyTrainList = new List<UnitBody>();
 
     [Space(10)]
-    
+
+    [SerializeField] public List<ItemBody> playerInventory = new List<ItemBody>();
+
+    [Space(10)]
+
     [SerializeField] Camera MainCam;
     public delegate void SetUp();
     SetUp SetUpF;
@@ -54,7 +58,6 @@ public class GameManager : MonoBehaviour
 
 
 
-
     [SerializeField] GameObject TutCanvas;
     [SerializeField] Button Tut0ButtonComp;
 
@@ -66,6 +69,10 @@ public class GameManager : MonoBehaviour
     float clapTimer = 0.5f;
     bool clap = false;
     bool unclap = false;
+
+    [Space(10)]
+
+    
 
     // Time taken for the transition.
     float thingyTimer = 0.5f;
@@ -90,17 +97,19 @@ public class GameManager : MonoBehaviour
         MainCam.transform.position = menuCamPos;
         MenuCanvas.SetActive(true);
 
-        playerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 2)));
-        playerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 2)));
-        playerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 2)));
+        PlayerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f)));
+        PlayerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f)));
+        PlayerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f)));
 
-        enemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 5), new Gun("test gun", 1)));
-        enemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 6), new Gun("test gun", 2)));
-        enemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 7), new Gun("test gun", 3)));
+        EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 5), new Gun("test gun", 1)));
+        EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 6), new Gun("test gun", 2)));
+        EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 7), new Gun("test gun", 3)));
 
         PrepAllUnits();
 
         Tut0ButtonComp.interactable = false;
+
+        PrepAllItems();
     }
 
     // Update is called once per frame
@@ -296,6 +305,10 @@ public class GameManager : MonoBehaviour
 
             case "Result":
                 CurrentGameState = GameState.Result;
+
+                GenerateLoot();
+                PrepAllItems();
+
                 CanShootAllUnits(false);
                 ResultCanvas.SetActive(true);
                 break;
@@ -381,6 +394,27 @@ public class GameManager : MonoBehaviour
             enemyTrainList[i].UpdateUnitBody();
         }
     }
+
+    void PrepAllItems()
+    {
+        for (int i = 0; i < playerInventory.Count; i++)
+        {
+            playerInventory[i].UpdateItemBody();
+        }
+    }
+
+    void GenerateLoot()
+    {
+        if (Random.Range(1, 3) == 1)
+        {
+            PlayerItems.Add(new Item("Repair kit", Item.ModType.Heal, 2));
+        }
+        else
+        {
+            PlayerItems.Add(new Item("Armor", Item.ModType.Hp, 1));
+        }
+    }
+
     public void CanShootAllUnits(bool set)
     {
         for (int i = 0; i < playerTrainList.Count; i++)
@@ -396,11 +430,11 @@ public class GameManager : MonoBehaviour
     }
     void SpawnEnemyUnits()
     {
-        enemyUnits.Clear();
+        EnemyUnits.Clear();
 
-        enemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 5), new Gun("test gun", 1)));
-        enemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 6), new Gun("test gun", 2)));
-        enemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 7), new Gun("test gun", 3)));
+        EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 5), new Gun("test gun", 1)));
+        EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 6), new Gun("test gun", 2)));
+        EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 7), new Gun("test gun", 3)));
 
         PrepAllUnits();
     }

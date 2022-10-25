@@ -37,26 +37,21 @@ public class AIMovement : MonoBehaviour
             if (AITimer < 0)
             {
                 DoAIThings();
-                Debug.Log("Called this");
-                //AITimer = 0.5f;
+
                 AITimer = Random.Range(1f,2f);
             }
         }
+
         if (CurrentGameState == GameState.Combat && currentAIState == AIState.Chase)
         {
             if (this.transform.position.x < waypoint.x)
             {
                 AIMoveRight();
-                Debug.Log("Called this2");
             }
             else if (this.transform.position.x > waypoint.x)
             {
                 AIMoveLeft();
-                Debug.Log("Called this3");
             }
-            
-
-            
         }
     }
     private void FixedUpdate()
@@ -65,6 +60,7 @@ public class AIMovement : MonoBehaviour
         {
             rb.velocity = rb.velocity * 0f;
         }
+
         if (transform.position.x > 6.5)
         {
             rb.velocity = rb.velocity * 0f;
@@ -77,9 +73,9 @@ public class AIMovement : MonoBehaviour
                 EnemyTrainSpeed = 1;
             }
 
-            rb.velocity = rb.velocity * 0.85f;
+            rb.velocity = rb.velocity * 0.9f;
 
-            if (rb.velocity.x < 0.05f && rb.velocity.x > -0.05f)
+            if (rb.velocity.x < 0.5f && rb.velocity.x > -0.5f)
             {
                 EnemyTrainSpeed = 1;
 

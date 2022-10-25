@@ -9,6 +9,11 @@ public static class GameData
     public static int TutCount { get; set; } = 0;
     public static bool UsingSkillState { get; set; } = false;
 
+
+    public static bool SelectingItem { get; set; } = false;
+    public static Item SelectedItem;
+    public static ItemBody SelectedItemBody;
+
     public static int Heat { get; set; } = 10;
     public static int MaxHeat { get; set; } = 50;
 
@@ -26,9 +31,9 @@ public static class GameData
     public static List<Bullet> allBulletsRef = new List<Bullet>();
     public static List<Gun> allGunsRef = new List<Gun>();
 
-    public static List<Unit> playerUnits = new List<Unit>();
-    public static List<Unit> enemyUnits = new List<Unit>();
+    public static List<Unit> PlayerUnits = new List<Unit>();
+    public static List<Unit> EnemyUnits = new List<Unit>();
 
-    public static List<Item> storedPlayerItems = new List<Item>();
-    public static List<int> storedPlayerItemsSlots = new List<int>();
+    
+    public static List<Item> PlayerItems = new List<Item>();
 }
