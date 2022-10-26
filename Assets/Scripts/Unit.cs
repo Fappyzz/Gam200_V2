@@ -19,7 +19,7 @@ public class Unit
 
     public bool IsDead { get; set; } = false;
 
-    public Unit(string name, int maxHp, Bullet bullet, Gun gun)
+    public Unit(string name, int maxHp, Bullet bullet, Gun gun, Skill skill)
     {
         Name = name;
         MaxHp = maxHp;
@@ -27,6 +27,7 @@ public class Unit
 
         Bullet = bullet;
         Gun = gun;
+        Skill = skill;
     }
 }
 
@@ -65,20 +66,6 @@ public static class Unitf
             target.IsDead = true;
         }
 
-        /*if (target.IsDead == false)
-        {
-            target.Hp -= dmg;
-
-            if (target.Hp <= 0)
-            {
-                target.Hp = 0;
-                target.IsDead = true;
-            }
-        }
-        else
-        {
-            Heat -= dmg;
-        }*/
     }
     public static void DamageUnit(Unit target, Bullet bullet)
     {
@@ -89,20 +76,7 @@ public static class Unitf
             target.Hp = 0;
             target.IsDead = true;
         }
-        /*if (target.IsDead == false)
-        {
-            target.Hp -= bullet.Dmg;
 
-            if (target.Hp <= 0)
-            {
-                target.Hp = 0;
-                target.IsDead = true;
-            }
-        }
-        else
-        {
-            Heat -= bullet.Dmg;
-        }*/
     }
 
     public static void HealUnit(Unit target, int heal)

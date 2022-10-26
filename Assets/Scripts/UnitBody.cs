@@ -8,7 +8,9 @@ using static Itemf;
 
 public class UnitBody : MonoBehaviour
 {
+
     //[SerializeField] Rigidbody2D rb;
+
 
     public enum UnitFaction { Player, Enemy }
     [SerializeField] public UnitFaction thisUnitFaction;
@@ -50,15 +52,15 @@ public class UnitBody : MonoBehaviour
             Debug.Log(thisUnit.Hp);
         }*/
 
-        if (AutoAttackTimer > 0 && CurrentGameState == GameState.Combat && CanShoot == true && !thisUnit.IsDead)
-        {
-            AutoAttackTimer -= Time.deltaTime;
-        }
-        else if (AutoAttackTimer < 0 && CurrentGameState == GameState.Combat && CanShoot == true && !thisUnit.IsDead)
-        {
-            ShootBullet();
-            AutoAttackTimer = thisGun.AutoAttTimer;
-        }
+        //if (AutoAttackTimer > 0 && CurrentGameState == GameState.Combat && CanShoot == true && !thisUnit.IsDead)
+        //{
+        //    AutoAttackTimer -= Time.deltaTime;
+        //}
+        //else if (AutoAttackTimer < 0 && CurrentGameState == GameState.Combat && CanShoot == true && !thisUnit.IsDead)
+        //{
+        //    ShootBullet();
+        //    AutoAttackTimer = thisGun.AutoAttTimer;
+        //}
     }
 
     public void UpdateUnitBody()
@@ -117,6 +119,8 @@ public class UnitBody : MonoBehaviour
             cbd.SpawnBullet(thisBullet, false);
         }
     }
+
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

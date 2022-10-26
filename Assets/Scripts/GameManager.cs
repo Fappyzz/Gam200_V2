@@ -4,6 +4,7 @@ using UnityEngine;
 using static GameData;
 using UnityEngine.UI;
 using TMPro;
+using static Unitf;
 
 public class GameManager : MonoBehaviour
 {
@@ -101,13 +102,13 @@ public class GameManager : MonoBehaviour
         MainCam.transform.position = menuCamPos;
         MenuCanvas.SetActive(true);
 
-        PlayerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f)));
-        PlayerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f)));
-        PlayerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f)));
+        PlayerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), new Skill("Buff", 0, 10, 1, 5)));
+        PlayerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), new Skill("Explosion", 1, 10)));
+        PlayerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), new Skill("Explosion", 1, 10)));
 
-        EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 5), new Gun("test gun", 1)));
-        EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 6), new Gun("test gun", 2)));
-        EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 7), new Gun("test gun", 3)));
+        EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 5), new Gun("test gun", 1), new Skill("Blank", 0, 10)));
+        EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 6), new Gun("test gun", 2), new Skill("Blank", 0, 10)));
+        EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 7), new Gun("test gun", 3), new Skill("Blank", 0, 10)));
 
         PrepAllUnits();
 
@@ -119,33 +120,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyUp(KeyCode.K))
-        {
-            TopBlackScreen.transform.position = new Vector3(0, 6, -10);
-        }*/
-        /*if (CheckPlayerTeamDead())
-        {
-            CurrentGameState = GameState.Result;
-            CombatCam.enabled = false;
-            ResultCam.enabled = true;
-        }*/
 
-        /*if (Input.GetKeyDown(KeyCode.G))
-        {
-            moveThingy = true;
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            moveThingy2 = true;
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            moveThingy3 = true;
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            moveThingy4 = true;
-        }*/
+
         if (moveThingy)
         {
             float newPosition = Mathf.SmoothDamp(PrepGOs.transform.localPosition.x, -1750, ref velo, thingyTimer);
@@ -318,6 +294,10 @@ public class GameManager : MonoBehaviour
                 break;
 
             case "Prep":
+                foreach (Unit unit in PlayerUnits)
+                {
+                    EndCombatTempHpMod(unit);
+                }
                 if (CurrentGameState == GameState.Prep)
                 {
                     CurrentGameState = GameState.Map;
@@ -440,9 +420,9 @@ public class GameManager : MonoBehaviour
     {
         EnemyUnits.Clear();
 
-        EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 5), new Gun("test gun", 1)));
-        EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 6), new Gun("test gun", 2)));
-        EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 7), new Gun("test gun", 3)));
+        EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 5), new Gun("test gun", 1), new Skill("Blank", 0, 10)));
+        EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 6), new Gun("test gun", 2), new Skill("Blank", 0, 10)));
+        EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 7), new Gun("test gun", 3), new Skill("Blank", 0, 10)));
 
         PrepAllUnits();
     }

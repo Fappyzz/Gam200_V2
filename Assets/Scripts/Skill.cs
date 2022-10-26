@@ -4,6 +4,7 @@ using UnityEngine;
 using static SkillActives;
 using static GameData;
 
+
 public class Skill
 {
     public string Name { get; set; }
@@ -11,8 +12,16 @@ public class Skill
     public int SkillRef { get; set; }
     public int CoolDownTimer { get; set; } = 6;
 
+    public int TargetRef { get; set; }
+    public int Mod { get; set; }
+    public bool HasMod { get; set; }
+
     public delegate void SkillFunction();
-    SkillFunction skillF;
+    SkillFunction noModSkillF;
+
+    public delegate void SkillFunctionWithMod(int target, int mod);
+    SkillFunctionWithMod modSkillF;
+
 
     public Skill(string name, int skillRef, int cdTimer)
     {
@@ -21,23 +30,55 @@ public class Skill
 
         switch (skillRef)
         {
+            case 0:
+                noModSkillF = Blank;
+                break;
+
             case 1:
-                skillF = Explosive;
+                noModSkillF = Explosive;
                 break;
 
             case 2:
-                skillF = MGFire;
+                noModSkillF = MGFire;
+                //noModSkillF = BuffHP;
                 break;
 
             default:
-                skillF = null;
+                noModSkillF = null;
+                break;
+        }
+    }
+    
+    public Skill(string name, int skillRef, int cdTimer, int targetRef, int mod)
+    {
+        Name = name;
+        CoolDownTimer = cdTimer;
+        TargetRef = targetRef;
+        Mod = mod;
+        HasMod = true;
+
+        switch (skillRef)
+        {
+            case 0:
+                modSkillF = BuffHP;
+                break;
+
+            default:
+                modSkillF = null;
                 break;
         }
     }
 
     public void ActivateSkill()
     {
-        skillF?.Invoke();
+        if (HasMod == true)
+        {
+            modSkillF?.Invoke(TargetRef, Mod);
+        }
+        else
+        {
+            noModSkillF?.Invoke();
+        }
     }
 }
 
@@ -45,10 +86,23 @@ public static class SkillActives
 {
     public static void Explosive()
     {
-        Debug.Log("Skill works");
+        //Damages Adjacent units
+        Debug.Log("Explosion");
+
     }
     public static void MGFire()
     {
-        Debug.Log("Skill works");
+        //Fires a set number of shots in quick succession
+    }
+
+    public static void BuffHP(int target, int mod)
+    {
+
+        Unitf.CombatTempHpMod(PlayerUnits[target], mod);
+        //buffs adjacent MAXHP
+    }
+    public static void Blank()
+    {
+        //Nothing
     }
 }
