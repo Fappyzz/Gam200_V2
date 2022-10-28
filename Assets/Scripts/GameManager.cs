@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject CombatCanvas;
     Vector3 combatCamPos = new Vector3(0, 0, -10);
     [SerializeField] GameObject playerTrainGO;
-    Vector2 playerTrainStartingPos = new Vector2(0.5f, -3);
+    Vector2 playerTrainStartingPos = new Vector2(0.5f, -2);
     [SerializeField] GameObject enemyTrainGO;
     Vector2 enemyTrainStartingPos = new Vector2(0.5f, 2);
     bool combatEnd = false;
