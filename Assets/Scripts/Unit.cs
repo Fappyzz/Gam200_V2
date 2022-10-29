@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using static GameData;
 using static UnityEngine.GraphicsBuffer;
@@ -11,7 +12,7 @@ public class Unit
     public int MaxHp { get; set; }
     public int Hp { get; set; }
 
-    public int TempHp { get; set; }
+    public int TempHp { get; set; } = 0;
 
     public Skill Skill { get; set; }
     public Bullet Bullet { get; set; }
@@ -116,11 +117,26 @@ public static class Unitf
         {
             target.MaxHp = 1;
         }
+
+        target.TempHp = 0;
     }
     
     public static void PermHpMod(Unit unit, int mod)
     {
         unit.Hp += mod;
         unit.MaxHp += mod;
+    }
+
+    public static void ChangeSkill(Unit unit, Skill mod)
+    {
+        unit.Skill = mod;
+    }
+    public static void ChangeGun(Unit unit, Gun mod)
+    {
+        unit.Gun = mod;
+    }
+    public static void ChangeBullet(Unit unit, Bullet mod)
+    {
+        unit.Bullet = mod;
     }
 }

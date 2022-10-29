@@ -11,6 +11,8 @@ public class HpUI : MonoBehaviour
 
     UnitBodyPrep bodyPrep;
     RectTransform bodyPrepRT;
+
+    [SerializeField] GameObject skillGO;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,22 +35,29 @@ public class HpUI : MonoBehaviour
     {
         if (body != null)
         {
-            tmpText.text = string.Format("{0} / {1}", body.thisUnit.Hp.ToString(), body.thisUnit.MaxHp.ToString());
+            if (body.thisUnit != null)
+            {
+                tmpText.text = string.Format("{0} / {1}", body.thisUnit.Hp.ToString(), body.thisUnit.MaxHp.ToString());
 
-            if (body.thisUnitFaction == UnitBody.UnitFaction.Player)
-            {
-                hpTextGO.transform.position = new Vector3(transform.position.x, transform.position.y - 1f, 0);
-            }
-            else if (body.thisUnitFaction == UnitBody.UnitFaction.Enemy)
-            {
-                hpTextGO.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, 0);
+                if (body.thisUnitFaction == UnitBody.UnitFaction.Player)
+                {
+                    hpTextGO.transform.position = new Vector3(transform.position.x, transform.position.y - 1f, 0);
+                    skillGO.transform.position = new Vector3(transform.position.x, transform.position.y + 0.2f, 0);
+                }
+                else if (body.thisUnitFaction == UnitBody.UnitFaction.Enemy)
+                {
+                    hpTextGO.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, 0);
+                }
             }
         }
 
         if (bodyPrep != null)
         {
-            tmpText.text = string.Format("{0} / {1}", bodyPrep.thisUnit.Hp.ToString(), bodyPrep.thisUnit.MaxHp.ToString());
-            hpTextGO.transform.position = new Vector3(transform.position.x, transform.position.y - 2f, transform.position.z);
+            if (bodyPrep.thisUnit != null)
+            {
+                tmpText.text = string.Format("{0} / {1}", bodyPrep.thisUnit.Hp.ToString(), bodyPrep.thisUnit.MaxHp.ToString());
+                hpTextGO.transform.position = new Vector3(transform.position.x, transform.position.y - 2f, transform.position.z);
+            }
         }
     }
 }

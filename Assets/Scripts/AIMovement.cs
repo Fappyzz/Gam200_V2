@@ -44,11 +44,11 @@ public class AIMovement : MonoBehaviour
 
         if (CurrentGameState == GameState.Combat && currentAIState == AIState.Chase)
         {
-            if (this.transform.position.x < waypoint.x)
+            if (this.transform.position.x < waypoint.x + Random.Range(1f,2f))
             {
                 AIMoveRight();
             }
-            else if (this.transform.position.x > waypoint.x)
+            else if (this.transform.position.x > waypoint.x + Random.Range(1f, 2f))
             {
                 AIMoveLeft();
             }

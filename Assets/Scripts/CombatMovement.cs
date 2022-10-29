@@ -27,7 +27,7 @@ public class CombatMovement : MonoBehaviour
     {
         if (CurrentGameState == GameState.Combat)
         {
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.A))
             {
                 inputLeft = true;
 
@@ -38,7 +38,7 @@ public class CombatMovement : MonoBehaviour
                 }
 
             }
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.D))
             {
                 inputRight = true;
 
@@ -49,11 +49,11 @@ public class CombatMovement : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyUp(KeyCode.LeftArrow))
+            if (Input.GetKeyUp(KeyCode.A))
             {
                 inputLeft = false;
             }
-            if (Input.GetKeyUp(KeyCode.RightArrow))
+            if (Input.GetKeyUp(KeyCode.D))
             {
                 inputRight = false;
             }

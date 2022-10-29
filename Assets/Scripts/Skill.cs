@@ -14,7 +14,7 @@ public class Skill
 
     public int TargetRef { get; set; }
     public int Mod { get; set; }
-    public bool HasMod { get; set; }
+    public bool HasMod { get; set; } = false;
 
     public delegate void SkillFunction();
     SkillFunction noModSkillF;
@@ -22,6 +22,10 @@ public class Skill
     public delegate void SkillFunctionWithMod(int target, int mod);
     SkillFunctionWithMod modSkillF;
 
+    public Skill(string name)
+    {
+        noModSkillF = Blank;
+    }
 
     public Skill(string name, int skillRef, int cdTimer)
     {
@@ -30,12 +34,8 @@ public class Skill
 
         switch (skillRef)
         {
-            case 0:
-                noModSkillF = Blank;
-                break;
-
             case 1:
-                noModSkillF = Explosive;
+                noModSkillF = Shoot;
                 break;
 
             case 2:
@@ -59,7 +59,7 @@ public class Skill
 
         switch (skillRef)
         {
-            case 0:
+            case 1:
                 modSkillF = BuffHP;
                 break;
 
@@ -84,15 +84,14 @@ public class Skill
 
 public static class SkillActives
 {
-    public static void Explosive()
+    public static void Shoot()
     {
-        //Damages Adjacent units
-        Debug.Log("Explosion");
-
+        Debug.Log("Pew");
     }
     public static void MGFire()
     {
         //Fires a set number of shots in quick succession
+        Debug.Log("Pew pew pew");
     }
 
     public static void BuffHP(int target, int mod)

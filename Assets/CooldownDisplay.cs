@@ -10,8 +10,10 @@ public class CooldownDisplay : MonoBehaviour
 {
     [SerializeField] Image clockCD;
     [SerializeField] TextMeshProUGUI cooldownTimer;
-    [SerializeField] UnitBody unit;
     [SerializeField] Button skillButton;
+
+    [SerializeField] UnitBody body;
+    Image img;
 
     bool skillpressed;
 
@@ -22,11 +24,24 @@ public class CooldownDisplay : MonoBehaviour
     void Start()
     {
         
+        if (GetComponent<Image>() != null)
+        {
+            img = GetComponent<Image>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (body.thisUnit.Skill == null)
+        {
+            img.enabled = false;
+        }
+        else
+        {
+            img.enabled = true;
+        }
+
         cooldownTimer.text = Mathf.FloorToInt(countdownCooldown).ToString(); 
         if (skillpressed)
         {
@@ -38,17 +53,15 @@ public class CooldownDisplay : MonoBehaviour
 
     public void SkillPressed()
     {
-
         clockCD.fillAmount = 1;
         clockCD.gameObject.SetActive(true);
         skillpressed = true;
-        cooldown = unit.thisUnit.Skill.CoolDownTimer;
-        countdownCooldown = unit.thisUnit.Skill.CoolDownTimer;
-        unit.ShootBullet();
-        unit.thisUnit.Skill.ActivateSkill();
+        cooldown = body.thisUnit.Skill.CoolDownTimer;
+        countdownCooldown = body.thisUnit.Skill.CoolDownTimer;
+        body.ShootBullet();
         skillButton.enabled = false;
-        
     }
+
     public void Countdown()
     {
         clockCD.fillAmount -= Time.deltaTime/cooldown ;

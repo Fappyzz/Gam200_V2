@@ -62,8 +62,6 @@ public class GameManager : MonoBehaviour
 
     [Space(10)]
 
-
-
     [SerializeField] GameObject TutCanvas;
     [SerializeField] Button Tut0ButtonComp;
 
@@ -78,7 +76,11 @@ public class GameManager : MonoBehaviour
 
     [Space(10)]
 
-    
+    [SerializeField] MapManager mapManager;
+
+    [Space(10)]
+
+    int lootCounter = 0;
 
     // Time taken for the transition.
     float thingyTimer = 0.5f;
@@ -103,9 +105,9 @@ public class GameManager : MonoBehaviour
         MainCam.transform.position = menuCamPos;
         MenuCanvas.SetActive(true);
 
-        PlayerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), new Skill("Buff", 0, 10, 1, 5)));
-        PlayerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), new Skill("Explosion", 1, 10)));
-        PlayerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), new Skill("Explosion", 1, 10)));
+        PlayerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), new Skill("Shoot", 0, 1)));
+        PlayerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), null));
+        PlayerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), null));
 
         EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 5), new Gun("test gun", 1), new Skill("Blank", 0, 10)));
         EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 6), new Gun("test gun", 2), new Skill("Blank", 0, 10)));
@@ -239,7 +241,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < enemyTrainList.Count; i++)
         {
-            if (enemyTrainList[i].thisUnit.IsDead == false)
+            if (enemyTrainList[i].thisUnit != null && enemyTrainList[i].thisUnit.IsDead == false)
             {
                 return false;
             }
@@ -271,6 +273,7 @@ public class GameManager : MonoBehaviour
 
             case "Combat":
                 CurrentGameState = GameState.Combat;
+                PrepAllUnits();
                 SetUpF = SetupCombatState;
                 CanShootAllUnits(false);
                 if (TutCount == 0)
@@ -295,6 +298,8 @@ public class GameManager : MonoBehaviour
                 break;
 
             case "Prep":
+                mapManager.SetUpMaps();
+
                 foreach (Unit unit in PlayerUnits)
                 {
                     EndCombatTempHpMod(unit);
@@ -396,14 +401,29 @@ public class GameManager : MonoBehaviour
 
     void GenerateLoot()
     {
-        if (Random.Range(1, 3) == 1)
+        int rng = Random.Range(1, 3);
+
+        if (lootCounter == 0)
         {
-            PlayerItems.Add(new Item("Repair kit", "Restore some health to your unit.", Item.ModType.Heal, 2));
+            PlayerItems.Add(new Item("Single shot gun", "A gun that shoots a single projectile at a time", Item.ModType.Skill, new Skill("Shoot", 0, 1)));
         }
         else
         {
-            PlayerItems.Add(new Item("Armor", "Restore health and increase max health to your unit.", Item.ModType.Hp, 1));
+            if (rng == 1)
+            {
+                PlayerItems.Add(new Item("Repair kit", "Restore some health to your unit.", Item.ModType.Heal, 2));
+            }
+            else if ( rng == 2)
+            {
+                PlayerItems.Add(new Item("Armor", "Restore health and increase max health to your unit.", Item.ModType.Hp, 1));
+            }
+            else
+            {
+                PlayerItems.Add(new Item("Single shot gun", "A gun that shoots a single projectile at a time", Item.ModType.Skill, new Skill("Shoot", 0, 1)));
+            }
         }
+
+        lootCounter++;
     }
 
     public void CanShootAllUnits(bool set)
@@ -411,12 +431,18 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < playerTrainList.Count; i++)
         {
             playerTrainList[i].CanShoot = set;
-            playerTrainList[i].AutoAttackTimer = playerTrainList[i].thisGun.AutoAttTimer;
+            if (playerTrainList[i].thisGun != null)
+            {
+                playerTrainList[i].AutoAttackTimer = playerTrainList[i].thisGun.AutoAttTimer;
+            }
         }
         for (int i = 0; i < enemyTrainList.Count; i++)
         {
             enemyTrainList[i].CanShoot = set;
-            enemyTrainList[i].AutoAttackTimer = enemyTrainList[i].thisGun.AutoAttTimer;
+            if (enemyTrainList[i].thisGun != null)
+            {
+                enemyTrainList[i].AutoAttackTimer = enemyTrainList[i].thisGun.AutoAttTimer;
+            }
         }
     }
     void SpawnEnemyUnits()

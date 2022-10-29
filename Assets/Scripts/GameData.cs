@@ -36,4 +36,7 @@ public static class GameData
 
     
     public static List<Item> PlayerItems = new List<Item>();
+
+    public static int MapTier { get; set; } = 0;
+    public static int MapChoice { get; set; } = 0;
 }

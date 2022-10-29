@@ -72,12 +72,12 @@ public static class Itemf
                 PermHpMod(target, item.Mod);
                 break;
 
-            /*case Item.ModType.Dmg:
-                //PermDmgMod(target, item.Mod);
-                break;*/
-
             case Item.ModType.Heal:
                 HealUnit(target, item.Mod);
+                break;
+
+            case Item.ModType.Skill:
+                ChangeSkill(target, item.skill);
                 break;
 
             default:
@@ -92,12 +92,12 @@ public static class Itemf
                     PermHpMod(target, item.Mod2);
                     break;
 
-                /*case Item.ModType.Dmg:
-                    //PermDmgMod(target, item.Mod2);
-                    break;*/
-
                 case Item.ModType.Heal:
                     HealUnit(target, item.Mod2);
+                    break;
+
+                case Item.ModType.Skill:
+                    ChangeSkill(target, item.skill);
                     break;
 
                 default:
