@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
     [Space(10)]
 
     [SerializeField] GameObject PrepCanvas;
+    [SerializeField] GameObject PrepCanvasBGImg;
     Vector3 prepCamPos = new Vector3(0, -15, -10);
     [SerializeField] GameObject PrepGOs;
     [SerializeField] GameObject PrepButtonGO;
@@ -338,6 +339,7 @@ public class GameManager : MonoBehaviour
 
     void SetupCombatState()
     {
+        PrepCanvasBGImg.SetActive(false);
         CombatCanvas.SetActive(true);
         if (HeatBar.activeSelf != true)
         {
@@ -351,6 +353,7 @@ public class GameManager : MonoBehaviour
     void SetupPrepState()
     {
         PrepCanvas.SetActive(true);
+        PrepCanvasBGImg.SetActive(true);
         MainCam.transform.position = prepCamPos;
         PrepGOs.transform.localPosition = new Vector2(0, 0);
         PrepButtonGO.transform.localPosition = new Vector2(700, 215);
