@@ -6,6 +6,7 @@ using static Unitf;
 public class CombatBulletBody : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] GameObject HitAnim;
 
     Bullet bullet;
     bool isPlayer;
@@ -40,14 +41,17 @@ public class CombatBulletBody : MonoBehaviour
     {
         if (collision.GetComponent<UnitBody>() != null)
         {
+            
             if (isPlayer && collision.GetComponent<UnitBody>().thisUnitFaction == UnitBody.UnitFaction.Enemy)
             {
+                Instantiate(HitAnim, transform.position, transform.rotation);
                 DamageUnit(collision.GetComponent<UnitBody>().thisUnit, bullet);
 
                 Destroy(this.gameObject);
             }
             else if (!isPlayer && collision.GetComponent<UnitBody>().thisUnitFaction == UnitBody.UnitFaction.Player)
             {
+                Instantiate(HitAnim, transform.position, transform.rotation);
                 DamageUnit(collision.GetComponent<UnitBody>().thisUnit, bullet);
 
                 if (collision.GetComponent<UnitBody>().thisUnit.Hp <= 0)
