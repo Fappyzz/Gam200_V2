@@ -74,11 +74,11 @@ public class CombatMovement : MonoBehaviour
             canMoveLeft = true;
             canMoveRight = true;
         }
-        if (transform.position.x < -6.5)
+        if (transform.position.x < -4.5)
         {
             rb.velocity = rb.velocity * 0f;
         }
-        if (transform.position.x > 6.5)
+        if (transform.position.x > 7.5)
         {
             rb.velocity = rb.velocity * 0f;
         }
@@ -103,7 +103,7 @@ public class CombatMovement : MonoBehaviour
                 canMoveRight = true;
             }
         }
-        else if (movingLeft && inputLeft && transform.position.x > -7)
+        else if (movingLeft && inputLeft && transform.position.x > -4)
         {
             rb.velocity = new Vector2(-TrainSpeed, 0);
 

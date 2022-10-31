@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Unitf;
+using static GameData;
 
 public class CombatBulletBody : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class CombatBulletBody : MonoBehaviour
     [SerializeField] GameObject HitAnim;
 
     Bullet bullet;
-    bool isPlayer;
+    public bool isPlayer;
 
     void Start()
     {
@@ -19,7 +20,7 @@ public class CombatBulletBody : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void SpawnBullet(Bullet bullet, bool isPlayer)
@@ -30,6 +31,7 @@ public class CombatBulletBody : MonoBehaviour
         if (isPlayer)
         {
             rb.AddForce(new Vector2(0, bullet.Speed), ForceMode2D.Impulse);
+            
         }
         else
         {
@@ -41,7 +43,7 @@ public class CombatBulletBody : MonoBehaviour
     {
         if (collision.GetComponent<UnitBody>() != null)
         {
-            
+
             if (isPlayer && collision.GetComponent<UnitBody>().thisUnitFaction == UnitBody.UnitFaction.Enemy)
             {
                 Instantiate(HitAnim, transform.position, transform.rotation);
@@ -60,9 +62,20 @@ public class CombatBulletBody : MonoBehaviour
                 }
 
                 Destroy(this.gameObject);
-            }       
+            }
         }
         else if (collision.GetComponent<CombatBulletBody>() != null)
+        {
+            return;
+        }
+        else if (collision.GetComponent<Shield>() != null && isPlayer == false)
+        {
+            rb.AddForce(new Vector2(0, bullet.Speed * 2), ForceMode2D.Impulse);
+            this.isPlayer = true;
+
+            collision.gameObject.SetActive(false);
+        }
+        else if (collision.GetComponent<Shield>() != null && isPlayer == true)
         {
             return;
         }

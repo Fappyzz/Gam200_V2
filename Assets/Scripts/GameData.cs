@@ -39,4 +39,6 @@ public static class GameData
 
     public static int MapTier { get; set; } = 0;
     public static int MapChoice { get; set; } = 0;
+
+    public static Sprite shieldSprite;
 }

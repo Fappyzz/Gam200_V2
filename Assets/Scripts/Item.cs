@@ -5,7 +5,7 @@ using static Unitf;
 
 public class Item
 {
-    public enum ModType { Hp, Heal, Skill, Bullet, Gun }
+    public enum ModType { Hp, Heal, Skill, Bullet, Gun, Shield }
     public string Name { get; set; }
     public string Desc { get; set; } = "test";
 
@@ -60,6 +60,15 @@ public class Item
         Type = type;
         this.gun = gun;
     }
+
+    public Item(string name, string desc, Skill skill, Bullet bullet)
+    {
+        Name = name;
+        Desc = desc;
+        Type = ModType.Shield;
+        this.skill = skill;
+        this.bullet = bullet;
+    }
 }
 
 public static class Itemf
@@ -77,7 +86,14 @@ public static class Itemf
                 break;
 
             case Item.ModType.Skill:
+                target.Name = "Basic unit";
                 ChangeSkill(target, item.skill);
+                break;
+
+            case Item.ModType.Shield:
+                target.Name = "Shield unit";
+                ChangeSkill(target, item.skill);
+                ChangeBullet(target, item.bullet);
                 break;
 
             default:

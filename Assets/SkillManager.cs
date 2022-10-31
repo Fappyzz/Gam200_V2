@@ -1,12 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using static GameData;
 
 public class SkillManager : MonoBehaviour
 {
-    [SerializeField] UnitBody unit0;
-    [SerializeField] UnitBody unit1;
-    [SerializeField] UnitBody unit2;
+    [SerializeField] Image unit0UnitImg;
+    [SerializeField] Image unit1UnitImg;
+    [SerializeField] Image unit2UnitImg;
+    
+    [SerializeField] Image unit0UiImg;
+    [SerializeField] Image unit1UiImg;
+    [SerializeField] Image unit2UiImg;
+
+    [SerializeField] Sprite shieldUnit;
+
+    bool change0 = false;
+    bool change1 = false;
+    bool change2 = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,26 +29,28 @@ public class SkillManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UseSkill();
-    }
-    private void UseSkill()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.O))
         {
-            unit0.thisUnit.Skill.ActivateSkill();
-            unit0.ShootBullet();
-            Debug.Log("unit 0 using skill");
+            PlayerUnits[0].Bullet = new Bullet("test shield", 1);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        
+        if (PlayerUnits[0].Bullet.IsShield == true)
         {
-            unit1.thisUnit.Skill.ActivateSkill();
-            Debug.Log("unit 1 using skill");
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            unit2.thisUnit.Skill.ActivateSkill();
-            Debug.Log("unit 2 using skill");
-        }
-    }
+            unit0UnitImg.sprite = shieldUnit;
+            unit0UiImg.sprite = shieldUnit;
 
+        }
+        if (PlayerUnits[1].Bullet.IsShield == true )
+        {
+            unit1UnitImg.sprite = shieldUnit;
+            unit1UiImg.sprite = shieldUnit;
+
+        }
+        if (PlayerUnits[2].Bullet.IsShield == true )
+        {
+            unit2UnitImg.sprite = shieldUnit;
+            unit2UiImg.sprite = shieldUnit;
+
+        }
+    }
 }

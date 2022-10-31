@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject playerTrainGO;
     Vector2 playerTrainStartingPos = new Vector2(0.5f, -2);
     [SerializeField] GameObject enemyTrainGO;
-    Vector2 enemyTrainStartingPos = new Vector2(0.5f, 2);
+    Vector2 enemyTrainStartingPos = new Vector2(0.5f, 3.5f);
     bool combatEnd = false;
     [SerializeField] GameObject victoryText;
     float victoryTimer = 2f;
@@ -105,9 +105,9 @@ public class GameManager : MonoBehaviour
         MainCam.transform.position = menuCamPos;
         MenuCanvas.SetActive(true);
 
-        PlayerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), new Skill("Shoot", 0, 1)));
-        PlayerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), null));
-        PlayerUnits.Add(new Unit("test unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), null));
+        PlayerUnits.Add(new Unit("Basic unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), new Skill("Shoot", 0, 1)));
+        PlayerUnits.Add(new Unit("Empty unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), null));
+        PlayerUnits.Add(new Unit("Empty unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), null));
 
         EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 5), new Gun("test gun", 1), new Skill("Blank", 0, 10)));
         EnemyUnits.Add(new Unit("test unit", 6, new Bullet("test bullet", 1, 6), new Gun("test gun", 2), new Skill("Blank", 0, 10)));
@@ -406,6 +406,7 @@ public class GameManager : MonoBehaviour
         if (lootCounter == 0)
         {
             PlayerItems.Add(new Item("Single shot gun", "A gun that shoots a single projectile at a time", Item.ModType.Skill, new Skill("Shoot", 0, 1)));
+            PlayerItems.Add(new Item("Shield generator", "Creates a shield that bounces projectiles back", new Skill("Shoot", 0, 3), new Bullet("Shield", 0)));
         }
         else
         {

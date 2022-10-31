@@ -27,6 +27,8 @@ public class UnitBody : MonoBehaviour
 
     public bool CanShoot { get; set; } = false;
 
+    [SerializeField] GameObject shieldGO;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -113,14 +115,21 @@ public class UnitBody : MonoBehaviour
 
     public void ShootBullet()
     {
-        CombatBulletBody cbd = Instantiate(this.cbd, transform.position, transform.rotation);
-        if (thisUnitFaction == UnitFaction.Player)
+        if (thisBullet.IsShield == false)
         {
-            cbd.SpawnBullet(thisBullet, true);
+            CombatBulletBody cbd = Instantiate(this.cbd, transform.position, transform.rotation);
+            if (thisUnitFaction == UnitFaction.Player)
+            {
+                cbd.SpawnBullet(thisBullet, true);
+            }
+            else
+            {
+                cbd.SpawnBullet(thisBullet, false);
+            }
         }
         else
         {
-            cbd.SpawnBullet(thisBullet, false);
+            shieldGO.SetActive(true);
         }
     }
 
