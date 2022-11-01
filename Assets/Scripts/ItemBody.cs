@@ -14,6 +14,7 @@ public class ItemBody : MonoBehaviour, IPointerClickHandler
     public bool selected = false;
     [SerializeField] TextMeshProUGUI itemName;
     [SerializeField] GameObject ItemImage;
+    [SerializeField] List<GameObject> arrowpoint;
 
     Vector3 baseScale;
     bool jiggle = false;
@@ -22,10 +23,13 @@ public class ItemBody : MonoBehaviour, IPointerClickHandler
     float jiggleTimerSet = 0.25f;
     float jiggleTimer = 0f;
 
+    public static bool activeArrow;
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (thisItem != null)
         {
+
             if (SelectingItem == false && selected == false)
             {
                 selected = true;
@@ -63,6 +67,7 @@ public class ItemBody : MonoBehaviour, IPointerClickHandler
             SelectedItem = null;
             SelectedItemBody = null;
         }
+        activeArrow = false;
     }
 
     // Start is called before the first frame update
@@ -103,12 +108,15 @@ public class ItemBody : MonoBehaviour, IPointerClickHandler
                 jiggle2 = false;
                 jiggleTimer = 0;
             }
+            
         }
         
 
         if (selected)
         {
+            activeArrow = true;
             jiggle = true;
+
             
         }
         else
@@ -118,6 +126,8 @@ public class ItemBody : MonoBehaviour, IPointerClickHandler
             jiggle1 = true;
             jiggle2 = false;
             jiggleTimer = 0;
+
+
         }
 
         if (thisItem == null)
@@ -130,6 +140,22 @@ public class ItemBody : MonoBehaviour, IPointerClickHandler
             ItemImage.SetActive(true);
             itemName.text = thisItem.Name;
         }
+
+        if (activeArrow)
+        {
+            foreach (GameObject arrows in arrowpoint)
+            {
+                arrows.SetActive(true);
+            }
+        }
+        else
+        {
+            foreach (GameObject arrows in arrowpoint)
+            {
+                arrows.SetActive(false);
+            }
+        }
+
     }
 
     public void UpdateItemBody()
@@ -137,6 +163,7 @@ public class ItemBody : MonoBehaviour, IPointerClickHandler
         if ((PlayerItems.Count - 1) >= thisItemRef)
         {
             thisItem = PlayerItems[thisItemRef];
+
         }
         /*else if (thisItemRef < PlayerItems.Count)
         {
@@ -144,6 +171,7 @@ public class ItemBody : MonoBehaviour, IPointerClickHandler
         }*/
         else
         {
+            
             itemName.text = "Empty";
         }
     }   

@@ -17,6 +17,7 @@ public class UnitBodyPrep : MonoBehaviour, IPointerClickHandler
     {
         if (SelectingItem == true)
         {
+            ItemBody.activeArrow = false;
             ConsumeItem(SelectedItem, thisUnit);
 
             PlayerItems.Remove(SelectedItem);
