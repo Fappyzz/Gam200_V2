@@ -288,16 +288,19 @@ public class GameManager : MonoBehaviour
                 break;
 
             case "Result":
-                CurrentGameState = GameState.Result;
+                /*CurrentGameState = GameState.Result;
 
-                GenerateLoot();
-                PrepAllItems();
-
-                CanShootAllUnits(false);
                 ResultCanvas.SetActive(true);
-                break;
+                break;*/
 
             case "Prep":
+                if (CurrentGameState == GameState.Combat)
+                {
+                    GenerateLoot();
+                    PrepAllItems();
+
+                    CanShootAllUnits(false);
+                }
                 mapManager.SetUpMaps();
 
                 foreach (Unit unit in PlayerUnits)
@@ -407,6 +410,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerItems.Add(new Item("Single shot gun", "A gun that shoots a single projectile at a time", Item.ModType.Skill, new Skill("Shoot", 0, 1)));
             PlayerItems.Add(new Item("Shield generator", "Creates a shield that bounces projectiles back", new Skill("Shoot", 0, 3), new Bullet("Shield", 0)));
+            PlayerItems.Add(new Item("Armor", "Restore health and increase max health to your unit.", Item.ModType.Hp, 1));
         }
         else
         {

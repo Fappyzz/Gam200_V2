@@ -8,13 +8,14 @@ public class CombatBulletBody : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
     [SerializeField] GameObject HitAnim;
+    [SerializeField] SpriteRenderer sr;
 
     Bullet bullet;
     public bool isPlayer;
 
     void Start()
     {
-
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -31,11 +32,12 @@ public class CombatBulletBody : MonoBehaviour
         if (isPlayer)
         {
             rb.AddForce(new Vector2(0, bullet.Speed), ForceMode2D.Impulse);
-            
+            sr.color = new Color(0, 200, 255);
         }
         else
         {
             rb.AddForce(new Vector2(0, -bullet.Speed), ForceMode2D.Impulse);
+            sr.color = Color.red;
         }
     }
 
