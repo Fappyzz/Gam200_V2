@@ -2498,9 +2498,9 @@ MonoBehaviour:
   unit0UnitImg: {fileID: 1791311622}
   unit1UnitImg: {fileID: 1752616876}
   unit2UnitImg: {fileID: 869126195}
-  unit0UiImg: {fileID: 953563491}
-  unit1UiImg: {fileID: 1601897695}
-  unit2UiImg: {fileID: 139304951}
+  unit0UiImg: {fileID: 285274244}
+  unit1UiImg: {fileID: 1702915298}
+  unit2UiImg: {fileID: 109504986}
   shieldUnit: {fileID: 21300000, guid: aed974fd43efcd9499736876c0b37c5a, type: 3}
 --- !u!4 &326914977
 Transform:
