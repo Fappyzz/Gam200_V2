@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using static GameData;
 using static GameManager;
 
@@ -12,6 +13,7 @@ public class ItemBody : MonoBehaviour, IPointerClickHandler
     public Item thisItem;
     public bool selected = false;
     [SerializeField] TextMeshProUGUI itemName;
+    [SerializeField] GameObject ItemImage;
 
     Vector3 baseScale;
     bool jiggle = false;
@@ -121,9 +123,11 @@ public class ItemBody : MonoBehaviour, IPointerClickHandler
         if (thisItem == null)
         {
             itemName.text = "Empty";
+            ItemImage.SetActive(false);
         }
         else
         {
+            ItemImage.SetActive(true);
             itemName.text = thisItem.Name;
         }
     }

@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
         MainCam.transform.position = menuCamPos;
         MenuCanvas.SetActive(true);
 
-        PlayerUnits.Add(new Unit("Basic unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), new Skill("Shoot", 0, 1)));
+        PlayerUnits.Add(new Unit("Basic unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), new Skill("Shoot", 0, 0.25f)));
         PlayerUnits.Add(new Unit("Empty unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), null));
         PlayerUnits.Add(new Unit("Empty unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), null));
 

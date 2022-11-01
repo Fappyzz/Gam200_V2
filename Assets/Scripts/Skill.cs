@@ -10,7 +10,7 @@ public class Skill
     public string Name { get; set; }
 
     public int SkillRef { get; set; }
-    public int CoolDownTimer { get; set; } = 6;
+    public float CoolDownTimer { get; set; } = 6;
 
     public int TargetRef { get; set; }
     public int Mod { get; set; }
@@ -27,7 +27,7 @@ public class Skill
         noModSkillF = Blank;
     }
 
-    public Skill(string name, int skillRef, int cdTimer)
+    public Skill(string name, int skillRef, float cdTimer)
     {
         Name = name;
         CoolDownTimer = cdTimer;
@@ -49,7 +49,7 @@ public class Skill
         }
     }
     
-    public Skill(string name, int skillRef, int cdTimer, int targetRef, int mod)
+    public Skill(string name, int skillRef, float cdTimer, int targetRef, int mod)
     {
         Name = name;
         CoolDownTimer = cdTimer;

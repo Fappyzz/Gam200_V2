@@ -18,7 +18,7 @@ public class CooldownDisplay : MonoBehaviour
 
     bool skillpressed;
 
-    int cooldown;
+    float cooldown;
     float countdownCooldown;
 
     // Start is called before the first frame update
