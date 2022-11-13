@@ -11,6 +11,7 @@ public class CooldownDisplay : MonoBehaviour
     [SerializeField] Image clockCD;
     [SerializeField] TextMeshProUGUI cooldownTimer;
 
+
     [SerializeField] UnitBody body;
     Image img;
 
@@ -36,10 +37,15 @@ public class CooldownDisplay : MonoBehaviour
         if (body.thisUnit.Skill == null)
         {
             img.enabled = false;
+            
+            
+
         }
         else
         {
+            
             img.enabled = true;
+            
         }
 
         cooldownTimer.text = Mathf.FloorToInt(countdownCooldown).ToString(); 

@@ -14,6 +14,11 @@ public class SkillTriggerHC : MonoBehaviour
     [SerializeField] GameObject skill1;
     [SerializeField] GameObject skill2;
 
+    [SerializeField] UnitBody unit0;
+    [SerializeField] UnitBody unit1;
+    [SerializeField] UnitBody unit2;
+
+
     CooldownDisplay cooldownDisplay;
 
     void Start()
@@ -23,13 +28,40 @@ public class SkillTriggerHC : MonoBehaviour
 
         skill1.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         skill2.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        skill1.SetActive(false);
-        skill2.SetActive(false);
+        //skill1.SetActive(false);
+        //skill2.SetActive(false);
 
     }
 
     void Update()
     {
+        if (unit0.thisUnit.Skill == null)
+        {
+            skill0.SetActive(false);
+        }
+        else
+        {
+            skill0.SetActive(true);
+        }
+
+        if (unit1.thisUnit.Skill == null)
+        {
+            skill1.SetActive(false);
+        }
+        else
+        {
+            skill1.SetActive(true);
+        }
+
+        if (unit2.thisUnit.Skill == null)
+        {
+            skill2.SetActive(false);
+        }
+        else
+        {
+            skill2.SetActive(true);
+        }
+
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             if (skillRef == 2 && skill2.activeSelf == true && skill1.activeSelf == true)
