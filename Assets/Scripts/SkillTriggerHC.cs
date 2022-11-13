@@ -14,7 +14,7 @@ public class SkillTriggerHC : MonoBehaviour
     [SerializeField] GameObject skill1;
     [SerializeField] GameObject skill2;
 
-
+    CooldownDisplay cooldownDisplay;
 
     void Start()
     {
@@ -23,6 +23,8 @@ public class SkillTriggerHC : MonoBehaviour
 
         skill1.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         skill2.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        skill1.SetActive(false);
+        skill2.SetActive(false);
 
     }
 
@@ -80,17 +82,20 @@ public class SkillTriggerHC : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (skillRef == 0 && SelectedSkill.thisUnit == PlayerUnits[0])
-            {
-                SelectedSkill.ShootBullet();                
-            }
-            else if (skillRef == 1 && SelectedSkill.thisUnit == PlayerUnits[1])
+            if (skillRef == 0 && SelectedSkill.thisUnit == PlayerUnits[0] && skill0.GetComponent<CooldownDisplay>().canUse == true)
             {
                 SelectedSkill.ShootBullet();
+                skill0.GetComponent<CooldownDisplay>().SkillPressed();
             }
-            else if (skillRef == 2 && SelectedSkill.thisUnit == PlayerUnits[2])
+            else if (skillRef == 1 && SelectedSkill.thisUnit == PlayerUnits[1] && skill1.GetComponent<CooldownDisplay>().canUse == true)
             {
                 SelectedSkill.ShootBullet();
+                skill1.GetComponent<CooldownDisplay>().SkillPressed();
+            }
+            else if (skillRef == 2 && SelectedSkill.thisUnit == PlayerUnits[2] && skill2.GetComponent<CooldownDisplay>().canUse == true)
+            {
+                SelectedSkill.ShootBullet();
+                skill2.GetComponent<CooldownDisplay>().SkillPressed();
             }
 
         }
