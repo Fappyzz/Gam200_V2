@@ -42,7 +42,7 @@ public class HpUI : MonoBehaviour
                 if (body.thisUnitFaction == UnitBody.UnitFaction.Player)
                 {
                     hpTextGO.transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, 0);
-                    skillGO.transform.position = new Vector3(transform.position.x, transform.position.y + 0.2f, 0);
+                    skillGO.transform.position = new Vector3(transform.position.x, transform.position.y + 0.1f, 0);
                 }
                 else if (body.thisUnitFaction == UnitBody.UnitFaction.Enemy)
                 {

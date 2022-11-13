@@ -16,10 +16,12 @@ public class CombatMovement : MonoBehaviour
     bool canMoveLeft = true;
     bool canMoveRight= true;
 
+    Vector2 mousePosition;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -27,7 +29,9 @@ public class CombatMovement : MonoBehaviour
     {
         if (CurrentGameState == GameState.Combat)
         {
-            if (Input.GetKey(KeyCode.A))
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            
+            if (transform.position.x > mousePosition.x)
             {
                 inputLeft = true;
 
@@ -38,7 +42,7 @@ public class CombatMovement : MonoBehaviour
                 }
 
             }
-            if (Input.GetKey(KeyCode.D))
+            if (transform.position.x < mousePosition.x)
             {
                 inputRight = true;
 
@@ -49,18 +53,18 @@ public class CombatMovement : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyUp(KeyCode.A))
+            if (transform.position.x < mousePosition.x)
             {
                 inputLeft = false;
             }
-            if (Input.GetKeyUp(KeyCode.D))
+            if (transform.position.x > mousePosition.x)
             {
                 inputRight = false;
             }
         }
     }
 
-    private void FixedUpdate()
+        private void FixedUpdate()
     {
         if (CurrentGameState != GameState.Combat)
         {

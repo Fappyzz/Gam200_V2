@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject playerTrainGO;
     Vector2 playerTrainStartingPos = new Vector2(0.5f, -2);
     [SerializeField] GameObject enemyTrainGO;
-    Vector2 enemyTrainStartingPos = new Vector2(0.5f, 3.5f);
+    Vector2 enemyTrainStartingPos = new Vector2(0.5f, 4.5f);
     bool combatEnd = false;
     [SerializeField] GameObject victoryText;
     float victoryTimer = 2f;
