@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 using static Unitf;
 using static GameData;
 
@@ -9,7 +10,7 @@ public class CombatBulletBody : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     [SerializeField] GameObject HitAnim;
     [SerializeField] SpriteRenderer sr;
-
+    [SerializeField] Light2D m_glowLight;
     Bullet bullet;
     public bool isPlayer;
 
@@ -33,11 +34,13 @@ public class CombatBulletBody : MonoBehaviour
         {
             rb.AddForce(new Vector2(0, bullet.Speed), ForceMode2D.Impulse);
             sr.color = new Color(0, 200, 255);
+            m_glowLight.color = Color.cyan;
         }
         else
         {
             rb.AddForce(new Vector2(0, -bullet.Speed), ForceMode2D.Impulse);
             sr.color = Color.red;
+            m_glowLight.color = Color.red;
         }
     }
 

@@ -57,12 +57,12 @@ public class UnitBody : MonoBehaviour
         {
             if (AutoAttackTimer > 0 && CurrentGameState == GameState.Combat && CanShoot == true && !thisUnit.IsDead)
             {
-                AutoAttackTimer -= Time.deltaTime;
+                AutoAttackTimer -= Time.deltaTime*3;
             }
             else if (AutoAttackTimer < 0 && CurrentGameState == GameState.Combat && CanShoot == true && !thisUnit.IsDead)
             {
                 ShootBullet();
-                AutoAttackTimer = thisGun.AutoAttTimer + Random.Range(1f,2f);
+                AutoAttackTimer = thisGun.AutoAttTimer + Random.Range(0.1f,0.5f);
             }
         }
     }
