@@ -33,6 +33,8 @@ public class HpUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if (body != null)
         {
             if (body.thisUnit != null)
@@ -58,6 +60,15 @@ public class HpUI : MonoBehaviour
                 tmpText.text = string.Format("{0} / {1}", bodyPrep.thisUnit.Hp.ToString(), bodyPrep.thisUnit.MaxHp.ToString());
                 hpTextGO.transform.position = new Vector3(transform.position.x, transform.position.y - 2f, transform.position.z);
             }
+        }
+
+        if (body.thisUnit.Skill == null)
+        {
+            skillGO.SetActive(false);
+        }
+        else
+        {
+            skillGO.SetActive(true);
         }
     }
 }

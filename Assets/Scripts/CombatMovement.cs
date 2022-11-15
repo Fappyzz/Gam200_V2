@@ -78,11 +78,11 @@ public class CombatMovement : MonoBehaviour
             canMoveLeft = true;
             canMoveRight = true;
         }
-        if (transform.position.x < -4.5)
+        if (transform.position.x < -9)
         {
             rb.velocity = rb.velocity * 0f;
         }
-        if (transform.position.x > 7.5)
+        if (transform.position.x > 10)
         {
             rb.velocity = rb.velocity * 0f;
         }
