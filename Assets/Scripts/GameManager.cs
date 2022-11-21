@@ -32,12 +32,12 @@ public class GameManager : MonoBehaviour
     [Space(10)]
 
     [SerializeField] GameObject MenuCanvas;
-    Vector3 menuCamPos = new Vector3(0, 15, -10);
+    Vector3 menuCamPos = new Vector3(0, 15, -100);
 
     [Space(10)]
 
     [SerializeField] GameObject CombatCanvas;
-    Vector3 combatCamPos = new Vector3(0, 0, -10);
+    Vector3 combatCamPos = new Vector3(0, 0, -100);
     [SerializeField] GameObject playerTrainGO;
     Vector2 playerTrainStartingPos = new Vector2(0.5f, -2);
     [SerializeField] GameObject enemyTrainGO;
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject PrepCanvas;
     [SerializeField] GameObject PrepCanvasBGImg;
-    Vector3 prepCamPos = new Vector3(0, -15, -10);
+    Vector3 prepCamPos = new Vector3(0, -15, -100);
     [SerializeField] GameObject PrepGOs;
     [SerializeField] GameObject PrepButtonGO;
     [SerializeField] Button PrepButtonComp;
