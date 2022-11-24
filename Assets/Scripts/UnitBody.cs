@@ -18,10 +18,10 @@ public class UnitBody : MonoBehaviour
     [SerializeField] public UnitRef thisUnitRef;
 
     public Unit thisUnit;
-    Bullet thisBullet;
+    public Bullet thisBullet;
     public Gun thisGun;
 
-    [SerializeField] CombatBulletBody cbd;
+    [SerializeField] public CombatBulletBody cbd;
 
     public float AutoAttackTimer;
 
@@ -29,6 +29,15 @@ public class UnitBody : MonoBehaviour
 
     [SerializeField] GameObject shieldGO;
 
+    IEnumerator BurstShoot(int x)
+    {
+        for (int i = 0; i<x; i++)
+        {
+            ShootBullet();
+            yield return new WaitForSeconds(0.2f);
+        }
+        
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -57,12 +66,13 @@ public class UnitBody : MonoBehaviour
         {
             if (AutoAttackTimer > 0 && CurrentGameState == GameState.Combat && CanShoot == true && !thisUnit.IsDead)
             {
-                AutoAttackTimer -= Time.deltaTime*3;
+                AutoAttackTimer -= Time.deltaTime;
             }
             else if (AutoAttackTimer < 0 && CurrentGameState == GameState.Combat && CanShoot == true && !thisUnit.IsDead)
             {
-                ShootBullet();
-                AutoAttackTimer = thisGun.AutoAttTimer + Random.Range(0.1f,0.5f);
+                int shootAmt = Random.Range(3, 6);
+                StartCoroutine(BurstShoot(shootAmt));
+                AutoAttackTimer = thisGun.AutoAttTimer + Random.Range(1f,2f);
             }
         }
     }
@@ -117,13 +127,16 @@ public class UnitBody : MonoBehaviour
     {
         if (thisBullet.IsShield == false)
         {
-            CombatBulletBody cbd = Instantiate(this.cbd, transform.position, transform.rotation);
+            
             if (thisUnitFaction == UnitFaction.Player)
             {
+                CombatBulletBody cbd = Instantiate(this.cbd,new Vector3(transform.position.x, transform.position.y + 0.6f), transform.rotation);
                 cbd.SpawnBullet(thisBullet, true);
             }
             else
             {
+                CombatBulletBody cbd = Instantiate(this.cbd, new Vector3(transform.position.x, transform.position.y - 0.5f), transform.rotation);
+                cbd.transform.localScale = new Vector3(0.1f, 0.1f, 1);
                 cbd.SpawnBullet(thisBullet, false);
             }
         }
@@ -133,10 +146,4 @@ public class UnitBody : MonoBehaviour
         }
     }
 
-    
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-    }
 }

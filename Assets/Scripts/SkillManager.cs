@@ -37,18 +37,24 @@ public class SkillManager : MonoBehaviour
         if (PlayerUnits[0].Bullet.IsShield == true)
         {
             unit0UnitImg.sprite = shieldUnit;
+            unit0UnitImg.rectTransform.sizeDelta = new Vector2(50, 50);
+            unit0UnitImg.rectTransform.anchoredPosition = new Vector2(0, -10);
             unit0UiImg.sprite = shieldUnit;
 
         }
         if (PlayerUnits[1].Bullet.IsShield == true )
         {
             unit1UnitImg.sprite = shieldUnit;
+            unit1UnitImg.rectTransform.sizeDelta = new Vector2(50, 50);
+            unit1UnitImg.rectTransform.anchoredPosition = new Vector2(0, -10);
             unit1UiImg.sprite = shieldUnit;
 
         }
         if (PlayerUnits[2].Bullet.IsShield == true )
         {
             unit2UnitImg.sprite = shieldUnit;
+            unit2UnitImg.rectTransform.sizeDelta = new Vector2(50, 50);
+            unit2UnitImg.rectTransform.anchoredPosition = new Vector2(0, -10);
             unit2UiImg.sprite = shieldUnit;
 
         }

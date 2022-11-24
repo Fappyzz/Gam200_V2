@@ -11,7 +11,7 @@ public class CombatBulletBody : MonoBehaviour
     [SerializeField] GameObject HitAnim;
     [SerializeField] SpriteRenderer sr;
     [SerializeField] Light2D m_glowLight;
-    Bullet bullet;
+    public Bullet bullet;
     public bool isPlayer;
 
     void Start()
