@@ -5,7 +5,7 @@ using TMPro;
 
 public class HpUI : MonoBehaviour
 {
-    UnitBody body;
+    [SerializeField]UnitBody body;
     [SerializeField] GameObject hpTextGO;
     TextMeshProUGUI tmpText;
 

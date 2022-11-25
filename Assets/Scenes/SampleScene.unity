@@ -217,7 +217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &18963934
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1025,7 +1025,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b1a06112301288240942d5de39e3da21, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a8d7382c6f5da444daae80e26fb4eb13, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2565,7 +2565,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b1a06112301288240942d5de39e3da21, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a8d7382c6f5da444daae80e26fb4eb13, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8446,8 +8446,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Itemimg: {fileID: 894988256}
   thisItemRef: 2
-  Gun1sprite: {fileID: 21300000, guid: 471991760238d09488509ed35e726a24, type: 3}
-  Gen1sprite: {fileID: 21300000, guid: 6a53df4969ed66c4182b08a7f5b8bdf1, type: 3}
+  Gun1sprite: {fileID: 21300000, guid: a8d7382c6f5da444daae80e26fb4eb13, type: 3}
+  Gen1sprite: {fileID: 21300000, guid: 803bf15a166f8414fb808af1564c1eb5, type: 3}
   Repairsprite: {fileID: 21300000, guid: 6926f5796d1f70f438df435a8cce3a58, type: 3}
   Armorsprite: {fileID: 21300000, guid: 663c21c0d2fd36840acf321bd4bfcb06, type: 3}
   ib: {fileID: 498962530}
@@ -14176,6 +14176,7 @@ MonoBehaviour:
   TopBlackScreen: {fileID: 186358910}
   BotBlackScreen: {fileID: 2001924454}
   mapManager: {fileID: 575260622}
+  PauseMenu: {fileID: 1150295065}
 --- !u!4 &575260619
 Transform:
   m_ObjectHideFlags: 0
@@ -14610,8 +14611,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdde129f99a2b2f4582bfbe0e08084e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 0}
   hpTextGO: {fileID: 233802237}
-  skillGO: {fileID: 0}
+  skillGO: {fileID: 630657281}
 --- !u!1 &601500101
 GameObject:
   m_ObjectHideFlags: 0
@@ -15719,8 +15721,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdde129f99a2b2f4582bfbe0e08084e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 1367510381}
   hpTextGO: {fileID: 243769804}
-  skillGO: {fileID: 0}
+  skillGO: {fileID: 1752616873}
 --- !u!114 &678446431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17281,8 +17284,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Itemimg: {fileID: 1107422263}
   thisItemRef: 1
-  Gun1sprite: {fileID: 21300000, guid: 471991760238d09488509ed35e726a24, type: 3}
-  Gen1sprite: {fileID: 21300000, guid: 6a53df4969ed66c4182b08a7f5b8bdf1, type: 3}
+  Gun1sprite: {fileID: 21300000, guid: a8d7382c6f5da444daae80e26fb4eb13, type: 3}
+  Gen1sprite: {fileID: 21300000, guid: 803bf15a166f8414fb808af1564c1eb5, type: 3}
   Repairsprite: {fileID: 21300000, guid: 6926f5796d1f70f438df435a8cce3a58, type: 3}
   Armorsprite: {fileID: 21300000, guid: 663c21c0d2fd36840acf321bd4bfcb06, type: 3}
   ib: {fileID: 915006115}
@@ -17930,8 +17933,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdde129f99a2b2f4582bfbe0e08084e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 1031258141}
   hpTextGO: {fileID: 1206956628}
-  skillGO: {fileID: 0}
+  skillGO: {fileID: 1791311619}
 --- !u!114 &970078102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18283,6 +18287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdde129f99a2b2f4582bfbe0e08084e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 0}
   hpTextGO: {fileID: 1266916120}
   skillGO: {fileID: 1791311619}
 --- !u!50 &1031258137
@@ -19161,6 +19166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdde129f99a2b2f4582bfbe0e08084e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 0}
   hpTextGO: {fileID: 1721240268}
   skillGO: {fileID: 869126192}
 --- !u!114 &1087882613
@@ -19592,7 +19598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.8156863}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -20959,8 +20965,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdde129f99a2b2f4582bfbe0e08084e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 0}
   hpTextGO: {fileID: 890622698}
-  skillGO: {fileID: 0}
+  skillGO: {fileID: 1985849152}
 --- !u!1 &1285492059
 GameObject:
   m_ObjectHideFlags: 0
@@ -21622,6 +21629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdde129f99a2b2f4582bfbe0e08084e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 0}
   hpTextGO: {fileID: 420267910}
   skillGO: {fileID: 1752616873}
 --- !u!114 &1367510381
@@ -27472,8 +27480,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdde129f99a2b2f4582bfbe0e08084e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 1087882613}
   hpTextGO: {fileID: 1378413242}
-  skillGO: {fileID: 0}
+  skillGO: {fileID: 869126192}
 --- !u!114 &1528837376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28516,8 +28525,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdde129f99a2b2f4582bfbe0e08084e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 0}
   hpTextGO: {fileID: 1196828506}
-  skillGO: {fileID: 0}
+  skillGO: {fileID: 1721189489}
 --- !u!1 &1682212337
 GameObject:
   m_ObjectHideFlags: 0
@@ -28733,7 +28743,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b1a06112301288240942d5de39e3da21, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a8d7382c6f5da444daae80e26fb4eb13, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -35712,8 +35722,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Itemimg: {fileID: 1767073140}
   thisItemRef: 0
-  Gun1sprite: {fileID: 21300000, guid: 471991760238d09488509ed35e726a24, type: 3}
-  Gen1sprite: {fileID: 21300000, guid: 6a53df4969ed66c4182b08a7f5b8bdf1, type: 3}
+  Gun1sprite: {fileID: 21300000, guid: a8d7382c6f5da444daae80e26fb4eb13, type: 3}
+  Gen1sprite: {fileID: 21300000, guid: 803bf15a166f8414fb808af1564c1eb5, type: 3}
   Repairsprite: {fileID: 21300000, guid: 6926f5796d1f70f438df435a8cce3a58, type: 3}
   Armorsprite: {fileID: 21300000, guid: 663c21c0d2fd36840acf321bd4bfcb06, type: 3}
   ib: {fileID: 2051077802}

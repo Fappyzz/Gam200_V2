@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
 
     [Space(10)]
 
+    [SerializeField] GameObject PauseMenu;
     int lootCounter = 0;
 
     // Time taken for the transition.
@@ -97,6 +98,7 @@ public class GameManager : MonoBehaviour
 
     float velo = 0f;
     float velo2 = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -123,10 +125,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && CurrentGameState == GameState.Combat)
         {
             PauseGame();
+            PauseMenu.SetActive(true);
+            
         }
+        else if (Input.GetKeyDown(KeyCode.Tab) && CurrentGameState == GameState.Combat)
+        {
+            ResumeGame();
+            PauseMenu.SetActive(false);
+        }
+
 
 
         if (moveThingy)
