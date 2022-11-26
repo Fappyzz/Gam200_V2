@@ -33,6 +33,8 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
+
+        PlaySound("TrainTracks");
     }
 
     public void PlaySound(string name)
@@ -58,4 +60,5 @@ public class AudioManager : MonoBehaviour
         }
         s.source.Stop();
     }
+
 }
