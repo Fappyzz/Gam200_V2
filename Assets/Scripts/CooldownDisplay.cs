@@ -38,8 +38,6 @@ public class CooldownDisplay : MonoBehaviour
         {
             img.enabled = false;
             
-            
-
         }
         else
         {
@@ -59,12 +57,15 @@ public class CooldownDisplay : MonoBehaviour
 
     public void SkillPressed()
     {
+        if(GameManager.GamePaused == false)
+        {
         clockCD.fillAmount = 1;
         clockCD.gameObject.SetActive(true);
         skillpressed = true;
         cooldown = body.thisUnit.Skill.CoolDownTimer;
         countdownCooldown = body.thisUnit.Skill.CoolDownTimer;
         canUse = false;
+        }
     }
 
     public void Countdown()

@@ -99,6 +99,8 @@ public class GameManager : MonoBehaviour
     float velo = 0f;
     float velo2 = 0f;
 
+    public static bool GamePaused = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -107,7 +109,7 @@ public class GameManager : MonoBehaviour
         MainCam.transform.position = menuCamPos;
         MenuCanvas.SetActive(true);
 
-        PlayerUnits.Add(new Unit("Basic unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), new Skill("Shoot", 0, 0.25f)));
+        PlayerUnits.Add(new Unit("Basic unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), new Skill("Shoot", 0, 2f)));
         PlayerUnits.Add(new Unit("Empty unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), null));
         PlayerUnits.Add(new Unit("Empty unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), null));
 
@@ -128,13 +130,13 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && CurrentGameState == GameState.Combat)
         {
             PauseGame();
-            PauseMenu.SetActive(true);
+            
             
         }
         else if (Input.GetKeyDown(KeyCode.Tab) && CurrentGameState == GameState.Combat)
         {
             ResumeGame();
-            PauseMenu.SetActive(false);
+            
         }
 
 
@@ -478,11 +480,22 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
+        GamePaused = true;
+        PauseMenu.SetActive(true);
         Time.timeScale = 0;
+        
     }
 
     public void ResumeGame()
     {
+        GamePaused = false;
+        PauseMenu.SetActive(false);
         Time.timeScale = 1;
+        
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

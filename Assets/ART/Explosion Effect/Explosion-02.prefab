@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a3b194bffddd94abc144c2c3f4f65b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionFlash: {fileID: 7554791788746446301}
   lifeTime: 0.11
 --- !u!1 &6995695863743805050
 GameObject:

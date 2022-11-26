@@ -125,12 +125,13 @@ public class UnitBody : MonoBehaviour
 
     public void ShootBullet()
     {
-        if (thisBullet.IsShield == false)
+        if (thisBullet.IsShield == false && GameManager.GamePaused == false)
         {
             
             if (thisUnitFaction == UnitFaction.Player)
             {
                 CombatBulletBody cbd = Instantiate(this.cbd,new Vector3(transform.position.x, transform.position.y + 0.6f), transform.rotation);
+                cbd.transform.localScale = new Vector3(0.13f, 0.13f, 1);
                 cbd.SpawnBullet(thisBullet, true);
             }
             else
@@ -140,7 +141,7 @@ public class UnitBody : MonoBehaviour
                 cbd.SpawnBullet(thisBullet, false);
             }
         }
-        else
+        else if (thisBullet.IsShield == true && GameManager.GamePaused == false)
         {
             shieldGO.SetActive(true);
         }
