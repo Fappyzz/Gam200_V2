@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject PrepCanvas;
     [SerializeField] GameObject PrepCanvasBGImg;
+    [SerializeField] GameObject MapCanvasBGImg;
     Vector3 prepCamPos = new Vector3(0, -15, -100);
     [SerializeField] GameObject PrepGOs;
     [SerializeField] GameObject PrepButtonGO;
@@ -112,7 +113,7 @@ public class GameManager : MonoBehaviour
         MainCam.transform.position = menuCamPos;
         MenuCanvas.SetActive(true);
 
-        PlayerUnits.Add(new Unit("Basic unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), new Skill("Shoot", 0, 2f)));
+        PlayerUnits.Add(new Unit("Basic unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), new Skill("Shoot", 0, 0.1f)));
         PlayerUnits.Add(new Unit("Empty unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), null));
         PlayerUnits.Add(new Unit("Empty unit", 10, new Bullet("test bullet", 2, 10), new Gun("test gun", 0.5f), null));
 
@@ -331,6 +332,9 @@ public class GameManager : MonoBehaviour
                 if (CurrentGameState == GameState.Prep)
                 {
                     CurrentGameState = GameState.Map;
+                    MapCanvasBGImg.SetActive(true);
+                    PrepCanvasBGImg.SetActive(false);
+                    
                     PrepButtonTMP.text = "See Train";
                     moveThingy = true;
                     moveThingy3 = true;
@@ -339,6 +343,8 @@ public class GameManager : MonoBehaviour
                 else if (CurrentGameState == GameState.Map)
                 {
                     CurrentGameState = GameState.Prep;
+                    MapCanvasBGImg.SetActive(false);
+                    PrepCanvasBGImg.SetActive(true);
                     PrepButtonTMP.text = "See Map";
                     moveThingy2 = true;
                     moveThingy4 = true;
