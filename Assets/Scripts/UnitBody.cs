@@ -135,14 +135,24 @@ public class UnitBody : MonoBehaviour
                 CombatBulletBody cbd = Instantiate(this.cbd,new Vector3(transform.position.x, transform.position.y + 0.6f), transform.rotation);
                 audioManager.PlaySound("PlayerGunShot");
                 cbd.transform.localScale = new Vector3(0.13f, 0.13f, 1);
-                cbd.SpawnBullet(thisBullet, true);
+                cbd.SpawnBullet(thisBullet, true, false, false);
             }
             else
             {
-                CombatBulletBody cbd = Instantiate(this.cbd, new Vector3(transform.position.x, transform.position.y - 0.5f), transform.rotation);
+                CombatBulletBody cbd1 = Instantiate(this.cbd, new Vector3(transform.position.x, transform.position.y - 0.5f), transform.rotation);
                 
-                cbd.transform.localScale = new Vector3(0.1f, 0.1f, 1);
-                cbd.SpawnBullet(thisBullet, false);
+                cbd1.transform.localScale = new Vector3(0.1f, 0.1f, 1);
+                cbd1.SpawnBullet(thisBullet, false, false, false);
+
+                CombatBulletBody cbd2 = Instantiate(this.cbd, new Vector3(transform.position.x, transform.position.y - 0.5f), transform.rotation);
+
+                cbd2.transform.localScale = new Vector3(0.1f, 0.1f, 1);
+                cbd2.SpawnBullet(thisBullet, false, true, false);
+
+                CombatBulletBody cbd3 = Instantiate(this.cbd, new Vector3(transform.position.x, transform.position.y - 0.5f), transform.rotation);
+
+                cbd3.transform.localScale = new Vector3(0.1f, 0.1f, 1);
+                cbd3.SpawnBullet(thisBullet, false, false, true);
             }
         }
         else if (thisBullet.IsShield == true && GameManager.GamePaused == false)

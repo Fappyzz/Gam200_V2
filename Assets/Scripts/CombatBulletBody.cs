@@ -25,7 +25,7 @@ public class CombatBulletBody : MonoBehaviour
 
     }
 
-    public void SpawnBullet(Bullet bullet, bool isPlayer)
+    public void SpawnBullet(Bullet bullet, bool isPlayer, bool left, bool right)
     {
         this.bullet = bullet;
         this.isPlayer = isPlayer;
@@ -38,9 +38,25 @@ public class CombatBulletBody : MonoBehaviour
         }
         else
         {
-            rb.AddForce(new Vector2(0, -bullet.Speed), ForceMode2D.Impulse);
-            sr.color = Color.red;
-            m_glowLight.color = Color.red;
+            if (!left && !right)
+            {
+                rb.AddForce(new Vector2(0, -bullet.Speed), ForceMode2D.Impulse);
+                sr.color = Color.red;
+                m_glowLight.color = Color.red;
+            }
+
+            else if (left)
+            {
+                rb.AddForce(new Vector2(0.5f, -bullet.Speed), ForceMode2D.Impulse);
+                sr.color = Color.red;
+                m_glowLight.color = Color.red;
+            }
+            else if (right)
+            {
+                rb.AddForce(new Vector2(-0.5f, -bullet.Speed), ForceMode2D.Impulse);
+                sr.color = Color.red;
+                m_glowLight.color = Color.red;
+            }
         }
     }
 

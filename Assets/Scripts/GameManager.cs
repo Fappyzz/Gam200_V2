@@ -287,6 +287,7 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case "Menu":
+                audioManager.StopSound("TrainTracks");
                 CurrentGameState = GameState.Menu;
                 SetUpF = SetupMenuState;
                 ClapScreen();
@@ -316,6 +317,7 @@ public class GameManager : MonoBehaviour
                 break;*/
 
             case "Prep":
+                audioManager.StopSound("TrainTracks");
                 if (CurrentGameState == GameState.Combat)
                 {
                     GenerateLoot();

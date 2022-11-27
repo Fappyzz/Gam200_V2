@@ -31,7 +31,7 @@ public class CombatMovement : MonoBehaviour
         {
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             
-            if (transform.position.x > mousePosition.x)
+            if (transform.position.x + 1 > mousePosition.x)
             {
                 inputLeft = true;
 
@@ -42,7 +42,7 @@ public class CombatMovement : MonoBehaviour
                 }
 
             }
-            if (transform.position.x < mousePosition.x)
+            if (transform.position.x - 1 < mousePosition.x)
             {
                 inputRight = true;
 
