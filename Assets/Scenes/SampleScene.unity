@@ -33378,9 +33378,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: TrainTracks
-    clip: {fileID: 8300000, guid: 00f50e3b3bc8ea547a04901aa4232097, type: 3}
-    volume: 0.04
-    pitch: 1.2
+    clip: {fileID: 8300000, guid: 541fef27889ce524a88f1cc7b3e3df49, type: 3}
+    volume: 0.08
+    pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: PlayerGunShot
