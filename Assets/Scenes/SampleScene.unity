@@ -9190,7 +9190,6 @@ Transform:
   - {fileID: 18963934}
   - {fileID: 1917848186}
   - {fileID: 1593635401}
-  - {fileID: 2060792031}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14644,7 +14643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39b7935b8e30ecf448ee48610aaf9254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioManager: {fileID: 2060792032}
+  audioManager: {fileID: 1506482392}
   playerTrainList:
   - {fileID: 1031258141}
   - {fileID: 1367510381}
@@ -16983,7 +16982,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Use the A and D keys to move your train.
+  m_text: The train will follow your mouse position
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -21767,7 +21766,7 @@ GameObject:
   - component: {fileID: 1273507070}
   - component: {fileID: 1273507069}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Snow effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28045,7 +28044,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You can click on your skills to use them
+  m_text: You can left click anywhere on the map to use the selected skill and right
+    click to switch the skills
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -33347,6 +33347,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486049004}
   m_CullTransparentMesh: 1
+--- !u!1 &1506482391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1506482393}
+  - component: {fileID: 1506482392}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1506482392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506482391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded47b2d4bd39c04fa0777e79367d63a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: TrainTracks
+    clip: {fileID: 8300000, guid: 00f50e3b3bc8ea547a04901aa4232097, type: 3}
+    volume: 0.04
+    pitch: 1.2
+    loop: 1
+    source: {fileID: 0}
+  - name: PlayerGunShot
+    clip: {fileID: 8300000, guid: 4f00ad2ffcd92f4489c90b1f74414f4e, type: 3}
+    volume: 0.2
+    pitch: 1.2
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyShot
+    clip: {fileID: 8300000, guid: 4f00ad2ffcd92f4489c90b1f74414f4e, type: 3}
+    volume: 0.08
+    pitch: 1.9
+    loop: 0
+    source: {fileID: 0}
+--- !u!4 &1506482393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506482391}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4642453, y: 1.4274776, z: -102.14613}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1511046085
 GameObject:
   m_ObjectHideFlags: 0
@@ -35265,7 +35327,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -348.103, y: 17.4}
+  m_AnchoredPosition: {x: -348.103, y: 21.779984}
   m_SizeDelta: {x: 44.88, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1729580234
@@ -35290,8 +35352,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 00
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ac8dbcb52a6e5d14cb572d2a90a8f85e, type: 2}
+  m_sharedMaterial: {fileID: 4786095102873563898, guid: ac8dbcb52a6e5d14cb572d2a90a8f85e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -36361,7 +36423,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -348.103, y: -32.600014}
+  m_AnchoredPosition: {x: -348.103, y: -29.8}
   m_SizeDelta: {x: 44.88, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1888883624
@@ -36386,8 +36448,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 00
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ac8dbcb52a6e5d14cb572d2a90a8f85e, type: 2}
+  m_sharedMaterial: {fileID: 4786095102873563898, guid: ac8dbcb52a6e5d14cb572d2a90a8f85e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -42516,56 +42578,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057010122}
   m_CullTransparentMesh: 1
---- !u!1 &2060792030
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2060792031}
-  - component: {fileID: 2060792032}
-  m_Layer: 0
-  m_Name: Audio Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2060792031
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060792030}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: 0.72, z: 100}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 519420032}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2060792032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060792030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ded47b2d4bd39c04fa0777e79367d63a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: TrainTracks
-    clip: {fileID: 8300000, guid: 00f50e3b3bc8ea547a04901aa4232097, type: 3}
-    volume: 1
-    pitch: 0.1
-    loop: 0
-    source: {fileID: 0}
 --- !u!1 &2078854712
 GameObject:
   m_ObjectHideFlags: 0

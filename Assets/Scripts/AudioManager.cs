@@ -34,7 +34,6 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
         }
 
-        PlaySound("TrainTracks");
     }
 
     public void PlaySound(string name)

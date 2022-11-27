@@ -11,6 +11,7 @@ public class UnitBody : MonoBehaviour
 
     //[SerializeField] Rigidbody2D rb;
 
+    AudioManager audioManager;
 
     public enum UnitFaction { Player, Enemy }
     [SerializeField] public UnitFaction thisUnitFaction;
@@ -34,6 +35,7 @@ public class UnitBody : MonoBehaviour
         for (int i = 0; i<x; i++)
         {
             ShootBullet();
+            audioManager.PlaySound("EnemyShot");
             yield return new WaitForSeconds(0.2f);
         }
         
@@ -41,7 +43,7 @@ public class UnitBody : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioManager = AudioManager.instance;
     }
 
     // Update is called once per frame
@@ -131,12 +133,14 @@ public class UnitBody : MonoBehaviour
             if (thisUnitFaction == UnitFaction.Player)
             {
                 CombatBulletBody cbd = Instantiate(this.cbd,new Vector3(transform.position.x, transform.position.y + 0.6f), transform.rotation);
+                audioManager.PlaySound("PlayerGunShot");
                 cbd.transform.localScale = new Vector3(0.13f, 0.13f, 1);
                 cbd.SpawnBullet(thisBullet, true);
             }
             else
             {
                 CombatBulletBody cbd = Instantiate(this.cbd, new Vector3(transform.position.x, transform.position.y - 0.5f), transform.rotation);
+                
                 cbd.transform.localScale = new Vector3(0.1f, 0.1f, 1);
                 cbd.SpawnBullet(thisBullet, false);
             }

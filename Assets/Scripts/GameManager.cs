@@ -8,7 +8,8 @@ using static Unitf;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]AudioManager audioManager;
+    [SerializeField] AudioManager audioManager;
+    [Space(10)]
 
     [SerializeField] List<UnitBody> playerTrainList = new List<UnitBody>();
 
@@ -129,11 +130,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CurrentGameState == GameState.Combat)
-        {
-            audioManager.PlaySound("TrainTracks");
-        }
-
 
         if (Input.GetKeyDown(KeyCode.Escape) && CurrentGameState == GameState.Combat)
         {
@@ -297,6 +293,7 @@ public class GameManager : MonoBehaviour
 
             case "Combat":
                 CurrentGameState = GameState.Combat;
+                audioManager.PlaySound("TrainTracks");
                 PrepAllUnits();
                 SetUpF = SetupCombatState;
                 CanShootAllUnits(false);
